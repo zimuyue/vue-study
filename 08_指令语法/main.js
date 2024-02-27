@@ -74,20 +74,59 @@
 // var text = '<img src="123" onerror="alert(123)" />';
 // document.getElementById('app').innerHTML = text;
 
+// const App = {
+//   data () {
+//     return {
+//       // title: 'This is my Title',
+//       title: '<h1>This is my Title</h1>',
+//     }
+//   },
+//   // template: `
+//   //   <div>
+//   //     {{ '<h1>' + title + '</h1>' }}
+//   //   </div>
+//   // `
+//   template: `
+//     <div v-html="title"></div>
+//   `
+// }
+
+// -----------------------------------------------
+
+/**
+ * 属性区分
+ * 
+ * attribute: HTML的扩展  title src href -> attr
+ * 
+ * property: 在对象内部存储的数据，通常用来描述数据结构 -> prop
+ * 
+ * Mustache中是不支持在HTML属性中插值
+ * Vue中因为底层的模板编译系统，支持Vue内置的属性
+ * 
+ * v-bind -> v-bind:id -> id
+ * 
+ * var title = 't'
+ * <h1 v-bind:id="title"></h1>
+ * <h1 id="t"></h1>
+ * 
+ * html -> 插入JS表达式 -> v-bind:href="url"
+ * 
+ * 在标签中插入使用 {{}} 而在标签属性中插入使用 v-bind:xx=""
+ */
+
 const App = {
   data () {
     return {
-      // title: 'This is my Title',
-      title: '<h1>This is my Title</h1>',
+      title: 'ads via carbon'
     }
   },
-  // template: `
-  //   <div>
-  //     {{ '<h1>' + title + '</h1>' }}
-  //   </div>
-  // `
+  // null插值在HTML将不进行展示
+  // undefined插值只会展示属性名称
   template: `
-    <div v-html="title"></div>
+    <div>
+      <h1>{{ title }}</h1>
+      <span :id="null" :class="undefined"></span>
+    </div>
   `
 }
 
