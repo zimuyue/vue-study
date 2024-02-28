@@ -7,7 +7,7 @@
  * V -> 视图
  */
 
-import { useDOM, useReactive } from './MVVM';
+import { useDOM, useReactive } from '../MVVM';
 
 function App () {
   

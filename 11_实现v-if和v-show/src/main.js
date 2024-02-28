@@ -29,7 +29,7 @@
 
 // var vm = Vue.createApp(App).mount('#app');
 
-import Vue from'./Vue';
+import Vue from'../modules/vue';
 
 const vm = new Vue({
   el: '#app',

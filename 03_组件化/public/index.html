@@ -8,11 +8,26 @@
 </head>
 <body>
   <div id="app">
-    <!-- <my-title></my-title> -->
+    <div class="todo-list">
+      <div>
+        <todo-form @add-todo="addTodo"/>
+      </div>
+      <div>
+        <ul>
+          <todo-item
+            v-for="item of todoList"
+            :key="item.id"
+            :todo="item"
+            @change-completed="changeCompleted"
+            @remove-todo="removeTodo"
+          />
+        </ul>
+      </div>
+    </div>
   </div>
   
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/vue@3.1.2/dist/vue.global.js"></script>
-  <script src="./main.js"></script>
+  <script src="../src/main.js"></script>
 </body>
 </html>
