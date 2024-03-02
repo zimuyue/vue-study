@@ -12,6 +12,7 @@ class Vue {
   }
 
   init (vm, computed, watch) {
+    // 初始化响应式数据
     this.initData(vm);
     const computedIns = this.initComputed(vm, computed);
     const watcherIns = this.initWatcher(vm, watch);
@@ -31,6 +32,7 @@ class Vue {
    */
   initData (vm) {
     // 数据响应式
+    // 传递两个回调函数get与set
     reactive(vm, (key, value) => {
       //console.log(key, value);
     }, (key, newValue, oldValue) => {
