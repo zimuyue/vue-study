@@ -1,5 +1,3 @@
-console.log('Hello Vue!', Vue);
-
 import App from './src/App.vue'
 
 // new Vue({

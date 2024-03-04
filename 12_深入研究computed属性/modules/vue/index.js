@@ -104,7 +104,7 @@ var Vue = (function () {
     }
   }
 
-  // 将computed中的属性数据进行收集
+  // 将computed中的属性数据进行依赖收集
   // 通过获取属性描述符信息，记录value函数或者get函数，同时记录模板中依赖
   function _initComputedData (vm, computed) {
     for (var key in computed) {

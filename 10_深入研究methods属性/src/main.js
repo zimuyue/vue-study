@@ -1,7 +1,23 @@
 /**
  * methods
  * 向组件实例添加方法
+ * Vue创建实例时，会自动为methods绑定当前实例this
+ * 保证在事件监听时，回调始终指向当前组件实例
+ * 方法要避免使用箭头函数，箭头函数会阻止Vue正确绑定组件实例this
+ * 模板中直接调用的方法尽量避免副作用操作
  * 
+ */
+
+/**
+ * 
+ * @click="changeTitle('This is your TITLE')"
+ * 
+ * 函数名 + () 不是执行符号，传入实参的容器
+ * 
+ * onclick = "() => changeTitle('This is your TITLE')"
+ * 
+ * onClick = { () => changeTitle('This is your TITLE') }
+ * onCLick = { changeTitle.bind(this, This is your TITLE) }
  */
 
 // var app = Vue.createApp({
@@ -17,31 +33,9 @@
 //     <button @click="changeTitle('This is your TITLE')">CHANGE TITLE</button>
 //   `,
 //   methods: {
-//     /**
-//      * 1. Vue创建实例时，会自动为methods绑定当前实例this
-//      *    保证在事件监听时，回调始终指向当前组件实例
-//      *    方法要避免使用箭头函数，箭头函数会阻止Vue正确绑定组件实例this
-//      */
-
-//     /**
-//      * 
-//      * @click="changeTitle('This is your TITLE')"
-//      * 
-//      * 函数名 + () 不是执行符号，传入实参的容器
-//      * 
-//      * onclick = "() => changeTitle('This is your TITLE')"
-//      * 
-//      * onClick = { () => changeTitle('This is your TITLE') }
-//      * onCLick = { changeTitle.bind(this, This is your TITLE) }
-//      */
 //     changeTitle (title) {
 //       this.title = title;
 //     },
-//     /**
-//      * 
-//      * 模板直接调用的方法尽量避免副作用操作
-//      * 
-//      */
 //     yourTitle () {
 //       return 'This is your TITLE';
 //     },
@@ -53,8 +47,8 @@
 
 // const vm = app.mount('#app');
 
-// // 实例中直接挂载methods中的每一个方法
-// // methods相当一个容器最终这些方法都是要挂载到实例身上
+// 实例中直接挂载methods中的每一个方法
+// methods相当一个容器最终这些方法都是要挂载到实例身上
 // console.log(vm);
 // console.log(vm.methods);
 

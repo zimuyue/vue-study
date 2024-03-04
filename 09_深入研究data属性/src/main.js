@@ -22,19 +22,19 @@
 
 // console.log(vm);
 // console.log(vm.$data.title);
-// // 可以越过$data取属性值，底层是将$data进行proxy代理过的
-// // 并且会在data身上添加get与set的属性描述符
+// 可以越过$data取属性值，底层是将$data进行proxy代理过的
+// 并且会在data身上添加get与set的属性描述符
 // console.log(vm.title);
 
-// // $data是响应式数据对象
-// // 这样添加的属性$data身上是没有的，无法对属性进行跟踪
+// $data是响应式数据对象
+// 这样添加的属性$data身上是没有的，无法对属性进行跟踪
 // vm.author = 'ming';
-// // 如果是直接在$data添加属性，虽然会被添加到$data中
-// // 但是在页面渲染时引用会造成警告，依旧需要让你定义在data中
-// // Property "author" was accessed during render but is not defined on instance.
+// 如果是直接在$data添加属性，虽然会被添加到$data中
+// 但是在页面渲染时引用会造成警告，依旧需要让你定义在data中
+// Property "author" was accessed during render but is not defined on instance.
 // vm.$data.author = 'ming';
-// // 以 $,_,__ 开头的属性都是Vue提供的内置API
-// // 开发者要尽量避免使用这些前缀命名定义自己的属性和方法名
+// 以 $,_,__ 开头的属性都是Vue提供的内置API
+// 开发者要尽量避免使用这些前缀命名定义自己的属性和方法名
 // console.log(vm.$data);
 
 

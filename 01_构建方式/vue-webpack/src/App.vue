@@ -1,11 +1,11 @@
 <template>
-  <div>{{ title }}</div>
+  <div class="container">{{ title }}</div>
 </template>
 
 <script>
 export default {
   name: 'App',
-  data(){
+  data () {
     return {
       title: 'Hello Vue!'
     }
@@ -13,5 +13,13 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  background-color: #782;
+  transition: all .1s;
+}
+</style>
 
