@@ -1,5 +1,36 @@
 import Vue from'../modules/vue';
 
+/**
+ * 条件渲染
+ * v-if v-else-if v-else
+ * 
+ * v-show
+ * 
+ * 指令 -> v-if="指令表达式"
+ * 指令表达式返回truthy -> 渲染
+ * 
+ * v-show -> style/display -> 渲染 -> none/block
+ * 
+ * 
+ * if (表达式) {
+ * } else if (表达式) {
+ * } else {}
+ */
+
+/**
+ * v-if是对DOM的移除和添加，在移除的时候用注释节点占位
+ *     对内部的子组件与事件监听都会销毁与重建
+ * 
+ * v-if 只有条件是truthy的时候，才会被渲染（惰性渲染）
+ * v-show总是会被渲染，用display来控制其显示与隐藏
+ * 
+ * v-if在切换的时候会提高开销，如果条件为假值，初始化渲染是不会进行的
+ * v-show在切换的时候开销较低，但是初始化渲染时无论显示与否都要被渲染
+ * 
+ * 如果切换频繁就用v-show
+ * 如果切换不频繁，(加载时不需要的视图)，可以用v-if
+ */
+
 const vm = new Vue({
   el: '#app',
   data () {
