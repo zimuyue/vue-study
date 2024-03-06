@@ -22,6 +22,7 @@ export function compileAttr (vm, el, name, value) {
 
   switch (name) {
     case 'class':
+      // 匹配对象的方式
       if (REG_OBJ.test(value)) {
         const keyValueArr = value.match(REG_OBJ)[1].split(',');
         let classStr = '';
@@ -35,6 +36,7 @@ export function compileAttr (vm, el, name, value) {
         });
 
         el.setAttribute('class', classStr.trim());
+      // 匹配数组方式
       } else if(REG_ARR.test(value)) {
         const classArr = renderArr(vm, value);
         el.setAttribute('class', classArr.join(' ').trim());

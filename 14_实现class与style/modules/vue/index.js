@@ -33,6 +33,7 @@ class Vue {
     this.$el.appendChild(container);
   }
 
+  // 拿到所有的元素节点，迭代节点attr属性
   compileAttrs (vm, container) {
     const allNodes = [...container.getElementsByTagName('*')];
 
@@ -41,6 +42,7 @@ class Vue {
 
       attrs.forEach(attr => {
         const { name, value } = attr;
+        // 编译模板中元素节点的attr属性
         compileAttr(vm, el, name, value);
       });
 
