@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .outer {
+      width: 300px;
+      height: 300px;
+      background-color: black;
+    }
+
+    .middle {
+      width: 200px;
+      height: 200px;
+      background-color: green;
+    }
+
+    .inner {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    在视图上写了逻辑  ->  视图和逻辑完全分离
+
+   -->
+  <div class="outer">
+    <div class="middle">
+      <div class="inner"></div>
+    </div>
+  </div>
+
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+  <h1>123</h1>
+
+  <!-- 
+    addEventListener(eventType, handler, capture)
+    
+   -->
+
+   <script>
+     var oOuter = document.getElementsByClassName('outer')[0];
+     var oMiddle = document.getElementsByClassName('middle')[0];
+     var oInner = document.getElementsByClassName('inner')[0];
+
+     /**
+      * DOM4标准 -> addEventListener(eventType, handler, capture || options{});
+      */
+
+     oOuter.addEventListener('click', function () {
+       console.log('outer');
+     }, {
+       // capture: true
+     });
+
+     oMiddle.addEventListener('click', function (e) {
+       e.preventDefault();
+       console.log('middle');
+       console.log(e.defaultPrevented);
+     }, {
+       // capture: true
+       // 标准的默认值是false 
+       // Unable to preventDefault inside passive event listener invocation.
+       // 永远不调用阻止事件默认行为的方法  preventDefault
+       passive: false
+     });
+
+     oInner.addEventListener('click', function () {
+       console.log('inner');
+     }, {
+       // capture: true,
+       // 只调用一次事件处理函数
+       // 会移除当前事件的监听器
+       // 事件是不需要绑定，浏览器固然存在，冒泡也是默认的行为
+       once: true
+     });
+
+     window.addEventListener('touchstart', function (e) {
+       console.log(e.cancelable);
+       // touchstart的默认行为 -> scroll 滚动
+       // chrome firfox   window -> touchstart -> passive -> true
+       e.preventDefault();
+       /*
+           1. 处理器程序执行  console.log(123) 
+               非常大性能问题 -> 等待的时间 浪费 -> 导致了scroll的卡顿
+           2. 执行默认行为    scroll
+        */
+       console.log(123);
+       console.log(e.defaultPrevented);
+     }, {
+       // 设置passive会提高滚屏性能的原因
+
+       // 阻止默认行为的方法不会调用
+       // 两个线程去处理滚动的问题
+       // 1. 处理器程序的执行
+       // 2. 执行默认行为
+       // passive: true
+       passive: true
+     });
+   </script>
+</body>
+</html>
