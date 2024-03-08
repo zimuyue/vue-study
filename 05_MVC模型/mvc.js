@@ -1,42 +1,27 @@
 /**
+ * MVC的概念是从后端开发引入的，全名是Model View Controller
  * M: Model      数据模型（模型层） -> 操作数据库 (对数据进行增删改查的操作)
  * V: View       视图层 -> 显示视图或视图模板
  * C: Controller 控制器层 -> 逻辑层  数据和视图关联挂载和基本的逻辑操作
- *        服务端渲染
- *        View需要数据 -> Controller对应的方法 -> 调用Model的方法 ->
- *        获取数据 -> 返回给Controller对应的方法 -> render到View中
- *        
- *        前端渲染               
- *                          API层  前端请求的API对应的是控制器中的方法
- *        前端 -> 异步请求URL -> 控制器中的一个方法 
- *        -> Model层的方法 -> 操作数据库 -> 获取数据 ->
- *        返回给控制器方法 -> 响应回前端
  * 
- * 前端MVC
+ * 服务端前端渲染 
+ * view发起请求 -> Controller接收到请求 -> 让Model去操作数据库
+ *             -> 交给Controller -> 返回到前端
  * 
+ * 前端中的MVC
  * Model -> 管理视图所需要的数据 -> 数据与视图的关联
  * View -> HTML模板 + 视图渲染
  * Controller -> 管理事件逻辑
  * 
- * 加减乘除计算器
+ * MVC的缺点
+ * view层本应该只关注数据的展示，但是里面包含了触发render的方法
+ * 我们希望是有一套驱动，能把数据、视图、事件处理都放在一起集中处理，这就是ViewModel
  * 
- * Model -> data -> a b s r
- *          watch -> data change -> update view
+ * MVC也是MVVM模型的雏形，MVVM解决了驱动不内聚的缺点
+ * Modal管理数据data -> 通过ViewModel(收集依赖、模板编译、数据劫持)连接操作 -> View层只关注视图
+ * 这样设计方案的好处，开发者只需要关注于M与V层的逻辑，减轻心智负担
  * 
- * view -> template -> render 
- * 
- * controller -> event trigger -> model/data
- * 
- * 
- * controller -> model -> view
- * view -> controller -> model
- * 
- * MVVM模型雏形   ViewModel     M data/逻辑  V view   
- * vue -> 关注于视图渲染  MV -> ViewModel whatever
- * 严格意义上说vue其实不算是完整的MVVM 因为视图层可以去使用 ref -> DOM节点   
- * ViewModel -> 收集依赖、模板编译、数据劫持
- * 
- * angular -> MVW  whatever
+ * 但是严格意义上说Vue其实不算是完整的MVVM，因为视图层可以去使用ref操作DOM节点   
  */
 
 (function () {
