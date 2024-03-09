@@ -33,9 +33,23 @@ module.exports = {
   externals: {
     'vue': 'Vue'
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.vue']
+  },
   devtool: 'source-map',
   module: {
     rules: [
+      {
+        test: /\.(png|jpg|jpeg|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              esModule: false
+            }
+          }
+        ]
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader'
