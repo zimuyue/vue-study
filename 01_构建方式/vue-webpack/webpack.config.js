@@ -37,8 +37,21 @@ module.exports = {
     extensions: ['.js', '.jsx', '.vue']
   },
   devtool: 'source-map',
+  // resolveLoader: {
+  //   modules: [
+  //     'node_modules',
+  //     resolve(__dirname, './25_tpl-loader分离模板文件/loaders')
+  //   ]
+  // },
   module: {
     rules: [
+      // {
+      //   test: /\.tpl$/,
+      //   loader: 'tpl-loader',
+      //   options: {
+      //     consoleLog: false
+      //   }
+      // },
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
         use: [
