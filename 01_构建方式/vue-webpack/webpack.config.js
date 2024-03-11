@@ -40,7 +40,7 @@ module.exports = {
   // resolveLoader: {
   //   modules: [
   //     'node_modules',
-  //     resolve(__dirname, './25_tpl-loader分离模板文件/loaders')
+  //     resolve(__dirname, './25_tpl-loader分离模板文件/loaders/tpl-loader')
   //   ]
   // },
   module: {
