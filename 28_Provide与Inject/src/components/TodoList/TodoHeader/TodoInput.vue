@@ -9,6 +9,7 @@
 <script>
 export default {
   name: 'TodoInput',
+  // 来自于index.vue
   inject: ['placeholder'],
   // inject: ['todoListIns'],
   data () {

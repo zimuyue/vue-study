@@ -5,6 +5,7 @@
 <script>
 export default {
   name: 'TodoInfo',
+  // 来自于index.vue
   inject: ['todoLen']
 }
 </script>

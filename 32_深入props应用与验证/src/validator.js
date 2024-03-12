@@ -6,7 +6,7 @@ export const myDemo = {
   // title: String,
   // content: {
   //   type: String,
-  //   // required: true
+  //   required: true
   // },
   x: {
     type: Number,

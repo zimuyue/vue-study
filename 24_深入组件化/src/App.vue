@@ -4,6 +4,7 @@
     <!-- <tab
       :tab-data="tabData"
     ></tab> -->
+
     <!-- :disabled="confirmBtnDisabled" -->
     <!-- <modal
       width="500"
@@ -24,12 +25,12 @@
         @update:my-password="updateMyPassword"
       ></my-form>
     </modal> -->
+
     <recommend-tab :initial-index="initialIndex"></recommend-tab>
   </div>
 </template>
 
 <script>
-
 /**
  * primary  blue
  * success  green
@@ -73,31 +74,31 @@ export default {
       // }
     }
   },
-  // methods: {
-  //   // modalConfirm () {
-  //   //   // this.confirmBtnText = '提交中...';
-  //   //   // this.confirmBtnDisabled = true;
+  methods: {
+    modalConfirm () {
+      // this.confirmBtnText = '提交中...';
+      // this.confirmBtnDisabled = true;
 
-  //   //   this.isConfirmLoading = true;
+      this.isConfirmLoading = true;
 
-  //   //   setTimeout(() => {
-  //   //     this.myUsername = '';
-  //   //     this.myPassword = '';
-  //   //     // this.confirmBtnText = '确定';
-  //   //     // this.confirmBtnDisabled = false;
-  //   //     this.isConfirmLoading = false;
-  //   //   }, 1000);
+      setTimeout(() => {
+        this.myUsername = '';
+        this.myPassword = '';
+        // this.confirmBtnText = '确定';
+        // this.confirmBtnDisabled = false;
+        this.isConfirmLoading = false;
+      }, 1000);
       
-  //   // },
-  //   // modalCancel () {
-  //   //   this.modalShow = false;
-  //   // },
-  //   // updateMyUsername (value) {
-  //   //   this.myUsername = value;
-  //   // },
-  //   // updateMyPassword (value) {
-  //   //   this.myPassword = value;
-  //   // }
-  // }
+    },
+    modalCancel () {
+      this.modalShow = false;
+    },
+    updateMyUsername (value) {
+      this.myUsername = value;
+    },
+    updateMyPassword (value) {
+      this.myPassword = value;
+    }
+  }
 }
 </script>

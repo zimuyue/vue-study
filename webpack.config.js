@@ -1,13 +1,13 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { VueLoaderPlugin } = require('vue-loader');
 const autoprefixer = require('autoprefixer');
+
 /*
   vue2 -> npm i vue-loader@15.4.1 vue-template-compiler@2.6.14 -D
   vue3 -> npm i vue-loader@next @vue/compiler-sfc -D
 */
-
-// const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const { VueLoaderPlugin } = require('vue-loader');
 
 /**
  * 1、webpack各种依赖之间的版本兼容问题非常大
@@ -22,10 +22,11 @@ const { VueLoaderPlugin } = require('vue-loader');
  * vue-style-loader
  */
 
+const _ = './25_tpl-loader分离模板文件/';
 
 module.exports = {
   mode: 'development',
-  entry: './main.js',
+  entry: _ + 'src/main.js',
   output: {
     path: resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -33,25 +34,31 @@ module.exports = {
   externals: {
     'vue': 'Vue'
   },
+  // resolve: {
+  //   alias: {
+  //     'vue$': 'vue/dist/vue.esm.js'
+  //   }
+  // },
   resolve: {
     extensions: ['.js', '.jsx', '.vue']
   },
   devtool: 'source-map',
-  // resolveLoader: {
-  //   modules: [
-  //     'node_modules',
-  //     resolve(__dirname, './25_tpl-loader分离模板文件/loaders/tpl-loader')
-  //   ]
-  // },
+  // 将自定义loader与node_modules合并
+  resolveLoader: {
+    modules: [
+      'node_modules',
+      resolve(__dirname, _ + '/loaders')
+    ]
+  },
   module: {
     rules: [
-      // {
-      //   test: /\.tpl$/,
-      //   loader: 'tpl-loader',
-      //   options: {
-      //     consoleLog: false
-      //   }
-      // },
+      {
+        test: /\.tpl$/,
+        loader: 'tpl-loader',
+        options: {
+          consoleLog: false
+        }
+      },
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
         use: [
@@ -117,7 +124,8 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: resolve(__dirname, 'public/index.html')
+      // template: resolve(__dirname, 'public/index.html')
+      template: resolve(__dirname, _ + 'public/index.html')
     })
   ]
 }

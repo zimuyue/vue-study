@@ -105,5 +105,3 @@ class MyArticle extends HTMLElement {
 }
 
 window.customElements.define('my-article', MyArticle);
-
-

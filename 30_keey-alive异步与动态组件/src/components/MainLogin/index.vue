@@ -8,6 +8,7 @@
         @click="changeTab(tab)"
       >{{ tab }}</div>
     </div>
+
     <div class="login-component">
       <keep-alive>
         <component :is="currentTabComponent"></component>
@@ -29,6 +30,8 @@
  * 在交互中，组件的渲染是不确定的，根据交互的操作来决定渲染哪个组件
  * 
  * 异步组件
+ * 没有必要在当前进行加载的组件
+ * 被分割成代码块文件，按需从服务器上下载并加载
  * 
  * import { defineAsyncComponent } from 'vue';
  * 
@@ -57,24 +60,23 @@
  * }
  * 
  * app.component('async-comp', AsyncComp);
- * 
- * 没有必要在当前进行加载的组件
- * 被分割成代码块文件，按需从服务器上下载并加载
  */
 
 import AccountLogin from './AccountLogin';
 
 // Vue3加载异步组件使用defineAsyncComponent进行引入
-// const QrcodeLogin = Vue.defineAsyncComponent(() => import('./QrcodeLogin'));
-// const MobileLogin = Vue.defineAsyncComponent(() => import('./MobileLogin'));
+const QrcodeLogin = Vue.defineAsyncComponent(() => import('./QrcodeLogin'));
+const MobileLogin = Vue.defineAsyncComponent(() => import('./MobileLogin'));
 
 export default {
   name: 'MainLogin',
   components: {
     AccountLogin,
+    QrcodeLogin,
+    MobileLogin
     // Vue2加载异步组件写法
-    QrcodeLogin: () => import('./QrcodeLogin'),
-    MobileLogin: () => import('./MobileLogin')
+    // QrcodeLogin: () => import('./QrcodeLogin'),
+    // MobileLogin: () => import('./MobileLogin')
   },
   data () {
     return {

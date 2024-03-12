@@ -3,11 +3,13 @@
     <todo-header
       @add-todo="addTodo"
     ></todo-header>
+
     <todos
       :data="todoList"
       @toggle-completed="toggleCompleted"
       @remove-todo="removeTodo"
     ></todos>
+
     <todo-footer
       @remove-all="removeAll"
     ></todo-footer>
@@ -16,15 +18,15 @@
 
 <script>
 
-import TodoHeader from './TodoHeader';
 import Todos from './Todos';
+import TodoHeader from './TodoHeader';
 import TodoFooter from './TodoFooter';
 
 export default {
   name: 'TodoList',
   components: {
-    TodoHeader,
     Todos,
+    TodoHeader,
     TodoFooter
   },
   // provide: {
@@ -37,6 +39,7 @@ export default {
   // },
   provide () {
     return {
+      // 通过计算属性来实现provide数据响应式
       placeholder: Vue.computed(() => this.placeholder),
       todoLen: Vue.computed(() => this.todoList.length)
     }

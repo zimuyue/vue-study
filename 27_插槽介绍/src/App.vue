@@ -6,27 +6,31 @@
       :loading-icon="true"
       :is-loading="isLoading"
     > -->
+    
       <!-- Hello
       <my-icon></my-icon>
       <span>Click</span> -->
+
       <!-- v-slot只能用template上 -->
       <!-- <template v-slot:myBtn> -->
-        <!-- 
-          v-bind:xxx -> :xxx
-          v-on:xxx   -> @xxx
-          v-slot:xxx -> #xxx
-    
-         -->
+        
+      <!--
+        指令缩写方式
+        v-bind:xxx -> :xxx
+        v-on:xxx   -> @xxx
+        v-slot:xxx -> #xxx
+      -->
+
       <!-- 
-        对于函数：匿名函数    具名函数
+        对于函数：匿名函数 具名函数
 
         var test = function () {}
         将一个匿名函数赋值给变量test
 
         var test = function test1 () {}
         将一个具名函数test1赋值给变量test
+      -->
 
-       -->
       <!-- <template #myBtn> -->
       <!-- <template v-slot:default> -->
       <!-- <template #test>
@@ -40,6 +44,7 @@
       </template>
     </my-button> -->
     
+    <!-- 具名插槽 -->
     <!-- <base-layout> -->
       <!-- <template #baseHeader>
         <main-logo></main-logo>
@@ -54,7 +59,8 @@
         <main-board></main-board>
       </template> -->
     <!-- </base-layout> -->
-
+    
+    <!-- 作用域插槽 -->
     <!-- <pic-board>
       <template v-slot:default="props">
         <img :src="props.item.url" :alt="props.item.desc" style="width: 200px" />
@@ -90,6 +96,7 @@
       <img :src="imgUrl" :alt="description" style="width: 200px" />
       <p>【{{ formatField(field) }}】{{ description }}</p>
     </pic-board> -->
+
     <my-slot>
       <template v-slot:[slotName]>
         <h1>This is {{ slotName }}</h1>
@@ -102,7 +109,7 @@
 /**
  * 插槽  slot   内容占位标签
  * 
- * MyButton
+ * MyButton组件编写形式
  * 
  * <my-button />
  * <MyButton />
@@ -126,16 +133,6 @@
 
 // import MyButton from './MyButton';
 // import MyIcon from './MyIcon';
-
-/**
- * 后台管理系统的布局 - slot
- * BaseLayout -> 基本布局 -> 布局架子
- *   BaseHeader -> slot -> baseHeader
- *   BaseFooter -> slot -> baseFooter
- *   BaseSideBar -> slot -> baseSideBar
- *   BaseMain   -> slot  -> baseMain
- * 
- */
 
 import BaseLayout from './components/BaseLayout';
 import MainLogo from './components/MainLogo';
@@ -169,14 +166,14 @@ export default {
           return 'New';
       }
     }
-  }
+  },
   // components: {
   //   BaseLayout,
   //   MainLogo,
   //   FooterContent,
   //   BaseList,
   //   MainBoard
-  // }
+  // },
   // components: {
   //   MyButton,
   //   MyIcon

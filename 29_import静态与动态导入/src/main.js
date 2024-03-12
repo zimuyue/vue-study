@@ -13,7 +13,7 @@
  * 按需加载
  * 动态的导入：import('./xxx')  不依赖type="module"
  * 
- * script type="module":运行在支持ES2015标准的浏览器上 忽略 nomodule
+ * script type="module": 运行在支持ES2015标准的浏览器上 忽略 nomodule
  * script nomodule: 运行在不支持ES2015标准的浏览器上，忽略 type="module"
  * 
  */
@@ -54,7 +54,6 @@
 
 // console.log(res1, res2);
 
-// 动态的import
 /**
  * 静态导入  import xxx from './xxx';
  * 动态导入  import()

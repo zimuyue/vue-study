@@ -20,6 +20,7 @@ import TodoItem from './TodoItem';
 export default {
   name: 'Todos',
   props: ['data'],
+  // 来自于index.vue
   inject: ['todoLen'],
   components: {
     TodoItem
