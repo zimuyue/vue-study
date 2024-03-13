@@ -22,7 +22,7 @@ const autoprefixer = require('autoprefixer');
  * vue-style-loader
  */
 
-const _ = './25_tpl-loader分离模板文件/';
+const _ = './37_自定义指令/';
 
 module.exports = {
   mode: 'development',
@@ -44,21 +44,21 @@ module.exports = {
   },
   devtool: 'source-map',
   // 将自定义loader与node_modules合并
-  resolveLoader: {
-    modules: [
-      'node_modules',
-      resolve(__dirname, _ + '/loaders')
-    ]
-  },
+  // resolveLoader: {
+  //   modules: [
+  //     'node_modules',
+  //     resolve(__dirname, _ + '/loaders')
+  //   ]
+  // },
   module: {
     rules: [
-      {
-        test: /\.tpl$/,
-        loader: 'tpl-loader',
-        options: {
-          consoleLog: false
-        }
-      },
+      // {
+      //   test: /\.tpl$/,
+      //   loader: 'tpl-loader',
+      //   options: {
+      //     consoleLog: false
+      //   }
+      // },
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
         use: [
