@@ -36,4 +36,4 @@ export default {
 
 <style>
 
-</style>../mixins
+</style>

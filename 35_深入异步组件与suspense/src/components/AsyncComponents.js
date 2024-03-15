@@ -11,18 +11,21 @@ import Error from './Error';
  * 通过指定它名称前缀，判断是加载的哪一个异步组件，更清晰
  * 1.main.js => Intro.main.js
  */
+
 export const Intro = defineAsyncComponent({
   //loadingComponent: Loading,
   errorComponent: Error,
   delay: 0,
   loader: () => new Promise(resolve => setTimeout(() => resolve(import(/* webpackChunkName: "Intro" */ './Intro1')), 1000))
 });
+
 export const List = defineAsyncComponent({
   //loadingComponent: Loading,
   errorComponent: Error,
   delay: 0,
   loader: () => new Promise(resolve => setTimeout(() => resolve(import(/* webpackChunkName: "List" */ './List')), 1000))
 });
+
 export const Article = defineAsyncComponent({
   //loadingComponent: Loading,
   errorComponent: Error,

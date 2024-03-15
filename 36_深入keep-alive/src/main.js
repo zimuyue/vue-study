@@ -3,25 +3,16 @@ import App from './App';
 Vue.createApp(App).mount('#app');
 
 /**
- * template -> AST树（v-if  v-for  v-show @click）-> JS逻辑/过滤掉
- * 干净的AST树 -> vNode虚拟节点 -> vDOM -> rDOM
+ * Vue通过底层核心系统将用户编写的template模板，解析为AST树
+ * 为了将template上编写的指令语法、插值语法、自定义事件等等一系列操作
+ * 通过JS逻辑进行转化并过滤掉这些书写方式，生成干净的AST树
+ * 然后将AST树生成虚拟DOM树，最终将vDOM转化为rDOM真实节点
  * 
- * 每一次视图要更新
+ * 每一次视图要更新时
+ * 将old vNode虚拟节点进行diff算法对比，找出发生节点的变化
+ * 采用就地更新策略，进行patch打补丁，更新rDOM真实节点
  * 
- * 更新内容 -> vNode -> old vNode -> compare -> diff -> patch
- * -> 更新rDOM描述 -> 根据patch -> 更新真实DOM
- * 
- * 视图要变化 -> vNode -> 有/没有
- *           没有 -> 重新组装vNode -> 更新DOM
- *           有   -> 现成的vNode -> 更新DOM   keep-alive
- *                   缓存当前组件的vNode
- *                   不经过unmount
- * 
- *           缓存的是组件的实例 -> 有什么？vNode
- * 
- * 
- * vDOM  Virtual DOM
- * vNode Virtual Node
- * rDOM  Real DOM
- * rNode Real Node
+ * keep-alive组件作用
+ * 当视图发生变化，缓存当前组件的vNode，组件不再进行unmount
+ * 使用activated和deactivated控制组件的激活与停用
  */

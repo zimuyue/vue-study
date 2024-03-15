@@ -27,15 +27,15 @@ export default (el, bindings) => {
 }
 
 /**
- * el: 被绑定指令的元素，DOM对象 （对象） {}
+ * el: 被绑定指令的元素，DOM对象
  * 
  * bindings
- * arg: 指令的参数 -> myShow:abc -> abc
- * dir: 指令对象里的所有属性
- * instance: 使用指令的组件实例
- * modifiers: 指令的修饰符集合
- * oldValue: 更新前的指令绑定的值, beforeUpdate, updated
- * value: 当前指令绑定的值
+ *  arg: 指令的参数 -> myShow:abc -> abc
+ *  dir: 指令对象里的所有属性
+ *  instance: 使用指令的组件实例
+ *  modifiers: 指令的修饰符集合
+ *  oldValue: 更新前的指令绑定的值, beforeUpdate, updated
+ *  value: 当前指令绑定的值
  * 
  * vnode: 绑定指令元素的虚拟节点
  * prevNode: 上一个虚拟节点，beforeUpdate  updated
@@ -75,10 +75,3 @@ function beforeUnmount (el, bindings, vnode, prevNode) {
 function Unmounted (el, bindings, vnode, prevNode) {
   console.log('Unmounted', el, bindings, vnode, prevNode);
 }
-
-
-/**
- * <my-c v-test></my-c>
- * 1. v-bind="$attr" -> 不会传递
- * 2. 绑定在组件，应用在组件的根元素
- */
