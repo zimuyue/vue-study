@@ -1,11 +1,8 @@
 /**
  * ES6  ES2015
- * 
  * ES MODULE ES模块化   关键字import export
  * 
  * script type="module"
- * 
- * import 
  * 
  * 初始化加载
  * 静态的导入：import xxx from './xxx'  依赖type="module"
@@ -62,9 +59,9 @@
  *    typeof a  => typeof(a) 
  * 
  * 什么时候使用动态导入
- * 1.静态导入太多了，有一些不需要马上加载的模块
- * 2.异步模块导入
- * 3.存在副作用的模块
+ * 1. 静态导入太多了，有一些不需要马上加载的模块
+ * 2. 异步模块导入
+ * 3. 存在副作用的模块
  * 
  * import './utils'; => import('./utils');
  * 

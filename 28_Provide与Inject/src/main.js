@@ -2,7 +2,6 @@ import App from './App';
 
 Vue.createApp(App).mount('#app');
 
-
 /**
  * provide 提供 / inject  注入
  * 
@@ -48,4 +47,3 @@ Vue.createApp(App).mount('#app');
  * Provide len ---------------> len
  * 
  */
-
