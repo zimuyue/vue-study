@@ -11,7 +11,7 @@ function initMixin (Vue) {
     initState(vm);
 
     if (vm.$options.el) {
-      // 挂载函数   Vue.prototype.$mount
+      // 挂载函数 -> Vue.prototype.$mount
       vm.$mount(vm.$options.el);
     }
   }
@@ -20,6 +20,7 @@ function initMixin (Vue) {
     const vm = this,
           options = vm.$options;
     
+    // 获取要挂载的DOM节点
     el = document.querySelector(el),
     vm.$el = el;
 

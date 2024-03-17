@@ -1,7 +1,7 @@
 import { patch } from './vdom/patch';
 
 function mountComponent (vm) {
-              // vnode
+  // vnode
   vm._update(vm._render());
 }
 

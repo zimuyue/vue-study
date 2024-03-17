@@ -7,6 +7,8 @@ class Observer {
     setConstantProperty(data, '__ob__', this);
 
     if (isArray(data)) {
+      // 如果数据对象是数组结构
+      // 将数组对象的原型对象去继承重构数组方法的原型
       data.__proto__ = newArrMethods;
       this.observeArr(data);
     } else {

@@ -39,13 +39,13 @@ function initData (vm) {
   //    还有一个原因是用户传递的data是函数也可能是对象
   vm._data = data = typeof data === 'function' ? data.call(vm) : data;
   
+  // 代理模式
   for (let key in data) {
     proxy(vm, '_data', key);
   }
   
-  // vue中观察者模式，对data数据添加数据劫持
-  // 顾名思义观察data中数据中发生的操作，来做一些事情
-  // 例如数据变化去更新模板视图，而不是简单的更新数据而已
+  // 观察者模式
+  // 添加观察者，当数据变化去更新模板视图，而不是简单的更新数据
   // 发生的操作的方式即可能是对对象的操作，也可能是对数组的操作
   // vue要对这两种形式做区分，vue2中采用defineProperty的方式，这个方法仅是对对象属性的一些操作
   // 是无法检测到数组发生变化的情况，所以vue要对改变源数组的方法进行重新封装
