@@ -3,37 +3,8 @@
  * 计算属性只在内部逻辑依赖的数据发生变化的时候才会被再次调用
  * 计算属性会缓存其依赖的上一次计算出的数据结果
  * 多次复用一个相同值的数据，计算属性只调用一次
+ * https://v2.cn.vuejs.org/v2/guide/computed.html
  */
-
-// const App = {
-//   data () {
-//     return {
-//       studentCount: 0
-//     }
-//   },
-//   /**
-//    * 1、模板逻辑样式尽可能的绝对分离
-//    * 2、逻辑运算结果需要被复用
-//    */ 
-//   template: `
-//     <h1>{{ studentCountInfo }}</h1>
-//     <h2>{{ studentCountInfo }}</h2>
-//     <button @click="addStudentCount">ADD STUDENT COUNT</button>
-//   `,
-//   computed: {
-//     studentCountInfo () {
-//       console.log('Invoked');
-//       return this.studentCount > 0 
-//                                ? ('学生数：' + this.studentCount) 
-//                                : '暂无学生';
-//     }
-//   },
-//   methods: {
-//     addStudentCount () {
-//       this.studentCount = 0;
-//     }
-//   }
-// }
 
 const App = {
   data () {

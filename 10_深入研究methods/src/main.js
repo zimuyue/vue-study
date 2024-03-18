@@ -9,7 +9,6 @@
  */
 
 /**
- * 
  * @click="changeTitle('This is your TITLE')"
  * 
  * 函数名 + () 不是执行符号，传入实参的容器

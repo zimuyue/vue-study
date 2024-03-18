@@ -12,7 +12,7 @@ const App = {
     <p>
       <p>{{ inputText }}</p>
       v-model: <input type="text" v-model="inputText" />
-      input+value: <input type="text" @input="setInputText" :value="inputText" />
+      input+value: <input type="text" @input="setInputText" v-bind:value="inputText" />
     </p>
 
     <hr />

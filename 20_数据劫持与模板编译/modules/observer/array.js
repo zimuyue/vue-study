@@ -2,6 +2,14 @@ const originArrMethods = Array.prototype,
       // 根据数组原型对象创建继承实例
       newArrMethods = Object.create(originArrMethods);
 
+/**
+ * Vue数组变更检测
+ * Object.defineProperty -> 没办法监听下列方法对数组的操作变更
+ * push pop shift unshift splice sort reverse
+ * Vue对数组的变化更新方式，是将这些方法进行封装重写，实现数组数据响应式
+ * 而另一些数组方法是返回新数组的，直接替换原数组
+ */
+
 const ARR_METHODS = [
   'push',
   'pop',
@@ -11,6 +19,12 @@ const ARR_METHODS = [
   'sort',
   'splice'
 ];
+
+/**
+ * 替换数组是否会重新渲染整个DOM列表 （性能担忧）
+ * 不一定，Vue在对DOM操作的时候进行了大量的新旧节点信息的对比算法
+ * Vue会将DOM重新渲染的程度最小化，做到已有的DOM节点最大化复用
+ */
 
 ARR_METHODS.map((method) => {
   newArrMethods[method] = function (...args) {

@@ -1,30 +1,19 @@
 /**
- * v-for  列表渲染
- * 
- * v-for=""
- * 指令表达式 -> (item, index) in/of list
- * index 可选项 -> item in/of list
- * 
- * in/of 都可以使用  数组|对象
+ * v-for列表渲染，指令表达式
  * 
  * 在Vue中两者都是一套定义方法
  * JavaScript枚举对象或者遍历概念里 -> 语义化
  *   for in  -> 对象属性的枚举
  *   for of  -> 可迭代对象的遍历
  * 
- * 遍历可迭代对象 -> for of   (item, index)
+ * in/of 都可以使用  数组|对象
+ * 遍历可迭代对象 -> for of   (item, index, list)
  * 枚举对象属性   -> for in   (value, key, index)
  * 
  * v-if和v-for
  * 不推荐在同一元素上使用v-if和v-for
  * 如果v-for与v-if用于一个元素的使用，v-if的优先级高于v-for
  */
-
-// [1, 2, 3].forEach((item, index, list) => {
-//   console.log('数组元素别名：', item);
-//   console.log('元素在数组中对应的下标：', index);
-//   console.log('需要遍历的数组', list);
-// });
 
 var ListItem = {
   props: {

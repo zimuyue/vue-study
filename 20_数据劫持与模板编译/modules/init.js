@@ -31,6 +31,7 @@ function initMixin (Vue) {
         template = el.outerHTML;
       }
 
+      // 解析模板生成渲染函数
       const render = compileToRenderFunction(template);
       options.render = render;
     }

@@ -1,15 +1,13 @@
 /**
- * 事件修饰符
- * @click.once
- * 
+ * 事件修饰符 @click.once
  * 目的在与把事件处理函数中非纯逻辑的程序分离出去
  */
 
 /**
  * .prevent => 事件处理函数内部 -> Event.preventDefault();
  * .once => 只调用一次事件处理 -> 调用一次以后自动移除监听器  once: true
- * .stop => 阻止事件冒泡   cancelBubble  stopPropagation()
- * .capture => 采用捕获    capture => true
+ * .stop => 阻止事件冒泡 cancelBubble  stopPropagation()
+ * .capture => 采用捕获 capture => true
  * .self => 跳过非事件源的事件触发
  * .passive => 永远不调用Event.preventDefault();
  */

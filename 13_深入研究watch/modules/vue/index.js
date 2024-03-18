@@ -21,15 +21,6 @@ class Vue {
     this.$watch = watcherIns.invoke.bind(watcherIns);
   }
 
-  /**
-   * onMounted(() => {
-        // todo ....
-     })
-   * 
-     useEffect(() => {
-
-     }, []);
-   */
   initData (vm) {
     // 数据响应式
     // 传递两个回调函数get与set

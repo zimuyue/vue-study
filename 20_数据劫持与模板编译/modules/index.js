@@ -1,8 +1,9 @@
 import { initMixin } from './init';
 import { lifecycleMixin } from './lifecycle';
 import { renderMixin } from './vdom';
-debugger
+
 function Vue (options) {
+  debugger
   this._init(options);
 }
 

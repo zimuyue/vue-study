@@ -10,36 +10,7 @@
  * 事件 -> 处理函数 -> 进行绑定行为
  * 事件的触发 -> 执行其绑定的处理函数
  * 
- */
-
-// var obj = {
-//   a: 1,
-//   b: 2
-// }
-
-// function test () {
-//   console.log(this);
-// }
-
-// document.addEventListener('click', test.bind(obj));
-
-/**
- * 绑定事件处理函数 -> x 执行事件处理函数
- * 执行事件处理函数的时机 -> 当前绑定事件处理的事件被触发的时候
- * 
- */
-
-/**
- * const  -> 不变的量
- * let -> 针对可变的量
- * 
- * let -> 方便 、 随时可变（程序的扩展） 一派
- * const -> 不可变的量（符合编程的规则或规范）-> 程序扩展的时候   一派
- */
-
-/**
  * v-on:'eventType' -> v-on:click="" --->  @click=""
- * 
  */
 
 import TodoList from './TodoList';
@@ -56,8 +27,9 @@ const App = {
   },
   template: `
     <TodoList />
+
     <!-- 绑定JavaScript表达式（逻辑简单） -->
-    <!-- 极度不推荐 -->
+    <!-- 这种写法极度不推荐 -->
     <!-- <div>
       <h1>{{ count }}</h1>
       <button @click="count += 1">ADD</button>
@@ -94,17 +66,6 @@ const App = {
       <button @click="minusCount(1), setLog('MINUS', 1)">MINUS</button>
     </div> -->
   `,
-
-  /**
-   * function ($event) {
-   *   addCount($event, 2);
-   * }
-   * 
-   * 
-   * function ($event) {
-   *   return addCount;
-   * }
-   */
   methods: {
     // addCount () {
     //   this.count += 1;
