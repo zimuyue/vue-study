@@ -13,86 +13,90 @@
  * 
  * h函数的缺点
  * 可读性差，难以维护
+ * 
+ * https://cn.vuejs.org/guide/extras/render-function.html
  */
 
-// Vue2的写法
-
-// new Vue({
-//   render (h) {
-//     return h(App);
-//   }
-// }).$mount('#app');
-
-/**
- <div class="app">
-    <div class="article-box">
-      <h1 class="title">{{ title }}</h1>
-      <p>{{ author }} - <span class="date-time">{{ dateTime }}</span></p>
-      <p class="content">{{ content }}</p>
-    </div>
-  </div>
-*/
-
-const { createApp, h } = Vue;
+const { 
+  createApp, 
+  h,
+  resolveComponent,
+  resolveDynamicComponent
+} = Vue;
 
 const app = createApp({
   name: 'App',
   data () {
     return {
       title: 'This is TITLE',
-      author: 'Xiaoyesensen',
-      dateTime: '2022-04-17',
-      content: 'This is CONTENT.'
+      content: 'This is CONTENT',
+      isOpen: false,
+      listMap: [1, 2, 3]
     }
   },
   render () {
-    return h(
-      // 渲染的标签名称
-      'div',
-      // 标签属性
-      {
-        class: 'app3'
-      },
-      h(
-        'div',
-        {
-          class: 'article-box'
-        },
-        // 标签内存在多个HTML元素使用数组的形式
-        [
-          h(
-            'h1',
-            {
-              class: 'title'
-            },
-            this.title
-          ),
-          h(
-            'p',
-            {},
-            [
-              // 渲染插值文本
-              this.author + ' - ',
-              h(
-                'span',
-                {
-                  class: 'date-time'
-                },
-                this.dateTime
-              )
-            ]
-          ),
-          h(
-            'p',
-            {
-              class: 'content'
-            },
-            this.content
-          )
-        ]
-      )
-    );
+    // 标签、属性、子集
+    // return h('h1', { class: 'title' }, this.title);
+
+    // 没有props时默认第二个参数是children
+    // 推荐使用{}或null占位
+    // return h('h1', this.title);
+    // return h('h1', null, this.title);
+
+    // 渲染多个子元素时使用数组形式
+    // return h('h1', [
+    //   this.title,
+    //   h('span', this.content)
+    // ])
+
+    // 全局注册的组件
+    // return h(resolveComponent('my-test'))
+
+    // 局部注册可以直接使用h函数或者resolveComponent
+    // return h('my-test')
+
+    // v-if渲染
+    // return h('h1', [
+    //   this.isOpen ?
+    //   h('span', this.title) :
+    //   h('p', this.content)
+    // ])
+
+    // v-for渲染
+    // return h('ul', [
+    //   ...this.listMap.map(item => {
+    //     return h('li', null, item)
+    //   })
+    // ])
+
+    // v-slot渲染
+    // return h(resolveComponent('my-slot'), null, {
+    //   default: () => 'My Slot',
+    //   title: () => this.title,
+    //   content: (props) => h('p', props.content)
+    // })
   }
-});
+})
+
+app.component('my-test', {
+  name: 'MyTest',
+  render () {
+    return h('div', 'My Test Component')
+  }
+})
+
+app.component('my-slot', {
+  name: 'MySlot',
+  render () {
+    // console.log(this.$slots)
+    return h('div', null, [
+      h('h1', this.$slots.default()), // 默认插槽
+      h('h2', this.$slots.title()), // 具名插槽
+      h('h2', this.$slots.content({ // 作用域插槽
+        content: 'My Slot Content'
+      }))
+    ])
+  }
+})
 
 app.mount('#app');

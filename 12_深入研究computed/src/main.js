@@ -3,7 +3,7 @@
  * 计算属性只在内部逻辑依赖的数据发生变化的时候才会被再次调用
  * 计算属性会缓存其依赖的上一次计算出的数据结果
  * 多次复用一个相同值的数据，计算属性只调用一次
- * https://v2.cn.vuejs.org/v2/guide/computed.html
+ * https://cn.vuejs.org/guide/essentials/computed.html
  */
 
 const App = {

@@ -5,7 +5,7 @@
  * computed 计算属性
  *    关注点在模板：抽离复用模板中的复杂的逻辑运算
  *           特点：当函数内的依赖更新后，重新调用
- * https://v2.cn.vuejs.org/v2/guide/computed.html
+ * https://cn.vuejs.org/guide/essentials/watchers.html
  */
 
 import Vue from './modules/vue';
