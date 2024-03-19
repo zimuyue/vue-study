@@ -22,7 +22,7 @@ const autoprefixer = require('autoprefixer');
  * vue-style-loader
  */
 
-const _ = './37_自定义指令/';
+const _ = './35_派发器思想/';
 
 module.exports = {
   mode: 'development',
