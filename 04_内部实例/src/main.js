@@ -151,8 +151,19 @@ console.log(vm);
 
 /**
  * Vue生命周期函数
- * 组件是有初始化过程的
- * 在这个过程中，Vue提供了很多每个阶段运行的函数
- * 函数会在对应的初始化阶段自动运行
+ * 组件实例在创建时经历的过程，对应每个阶段的钩子函数
+ * 首先Vue会进行初始化事件和生命周期函数
+ * 调用beforeCreate方法，开始进行创建前工作
+ * 初始化注入项以及绑定组件实例的响应式对象
+ * 调用created方法，然后去挂载节点
+ * 根据el与template选项传递，如果有template则去编译生成渲染函数
+ * 如果没有template则取el的outerHTML作为模板
+ * 调用beforeMount方法，创建vm.$el去替换el，就是整个模板编译的过程
+ * 调用mounted方法，挂载完毕
+ * 当组件实例内数据触发更新时，调用beforeUpdate方法
+ * 生成虚拟DOM树与真实DOM进行对比，找出差异化节点，采取就地更新原则
+ * 进行打补丁，最终将真实DOM渲染到视图上面，调用updated方法
+ * 当组件调用vm.$destroy时，调用beforeDestory方法
+ * 解除组件绑定的监听器、子组件、事件处理函数，调用destroyed方法
  * https://cn.vuejs.org/guide/essentials/lifecycle.html#lifecycle-diagram
  */
