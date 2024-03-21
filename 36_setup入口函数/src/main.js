@@ -55,6 +55,7 @@ const app = createApp({
     // console.log(props);
 
     // ES6解构会导致丢失掉响应式特性
+    // 解构的方式只是将响应式对象中对应的属性值解构
     // const { title, content, author } = props;
     // console.log(title, content, author); 
     // const myContent = computed(() => 'Content:' + content);
