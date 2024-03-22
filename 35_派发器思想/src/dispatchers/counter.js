@@ -1,5 +1,5 @@
-import reducer from '../reducers/counter';
-import { PLUS, MINUS } from '../actions/counter';
+import reducer from '../reducers/counter.js';
+import { PLUS, MINUS } from '../actions/counter.js';
 
 export default (ctx) => {
   const {

@@ -1,10 +1,8 @@
 // import App from './App';
 // import { myShow } from './directives';
 
-import './main.scss';
-
-import myIf from './myIf';
-import myShow from './myShow';
+import myIf from './myIf.js';
+import myShow from './myShow.js';
 
 const app = Vue.createApp({
   name: 'App',

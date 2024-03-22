@@ -1,7 +1,7 @@
-import { useReactive } from ".";
-import { statePool } from "../compiler/state";
-import { update } from "../render";
-import { hasOwnProperty, isEqual, isObject } from "../shared/utils";
+import { useReactive } from "./index.js";
+import { statePool } from "../compiler/state.js";
+import { update } from "../render.js";
+import { hasOwnProperty, isEqual, isObject } from "../shared/utils.js";
 
 const get = createGetter(),
       set = createSetter();

@@ -1,4 +1,4 @@
-import Counter from './Counter';
+import Counter from './Counter.vue';
 
 /**
  * 组件化拆分

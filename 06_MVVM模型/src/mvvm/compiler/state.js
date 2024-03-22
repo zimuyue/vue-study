@@ -1,4 +1,4 @@
-import { randomNum } from "../shared/utils";
+import { randomNum } from "../shared/utils.js";
 
 const reg_html = /\<.+?\>\{\{(.+?)\}\}\<\/.+?\>/g;
 const reg_tag = /\<(.+?)\>/;

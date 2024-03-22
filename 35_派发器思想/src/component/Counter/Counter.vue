@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import CounterResult from './Result';
-import CounterButton from './Button';
+import CounterResult from './Result.vue';
+import CounterButton from './Button.vue';
 
-import dispatch from '../../dispatchers/counter';
+import dispatch from '../../dispatchers/counter.js';
 
 export default {
   name: 'Counter',

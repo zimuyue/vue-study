@@ -1,4 +1,4 @@
-import { REG_UPPERCASE } from "./regular";
+import { REG_UPPERCASE } from "./regular.js";
 
 export function isObject (value) {
   return Object.prototype.toString.call(value) === '[object Object]';

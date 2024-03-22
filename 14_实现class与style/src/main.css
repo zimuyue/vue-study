@@ -1,0 +1,18 @@
+.box {
+  display: none;
+  width: 500px;
+  height: 500px;
+  background-color: #999;
+}
+
+.box.show {
+  display: block;
+}
+
+.box.danger {
+  background-color: red;
+}
+
+.box p.big{
+  font-size: 30px;
+}

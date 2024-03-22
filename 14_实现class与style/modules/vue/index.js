@@ -1,6 +1,6 @@
-import { reactive } from './reactive';
-import { isObject } from './utils';
-import { compileAttr } from './compile';
+import { reactive } from './reactive.js';
+import { isObject } from './utils.js';
+import { compileAttr } from './compile.js';
 
 class Vue {
   constructor (options) {

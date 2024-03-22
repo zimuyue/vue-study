@@ -8,7 +8,6 @@
  * 模板中直接写HTML都是能够被HTML解析器解析的
  */
 
-
 // 插值表达式 Mustache
 // import Mustache from 'mustache';
 

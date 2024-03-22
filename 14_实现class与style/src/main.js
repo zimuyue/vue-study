@@ -5,10 +5,7 @@
  * 形式是比较多的，对象和数组的绑定方式
  * https://cn.vuejs.org/guide/essentials/class-and-style.html
  */
-
-import './main.scss';
-
-import Vue from './modules/vue';
+import Vue from '../modules/vue/index.js';
 
 const vm = new Vue({
   el: '#app',

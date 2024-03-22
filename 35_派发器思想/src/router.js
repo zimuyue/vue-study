@@ -1,4 +1,4 @@
-import Counter from './component/Counter'
+import Counter from './component/Counter/index.js'
 
 const routes = [
   { path: '/', component: Counter }

@@ -125,7 +125,7 @@ vm.calData = {
 
 console.log(vm);
 
-// import Vue from '../modules/vue';
+// import Vue from '../modules/vue/index.js';
 
 // var vm = new Vue({
 //   el: '#app',

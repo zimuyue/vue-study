@@ -8,7 +8,7 @@
  * https://cn.vuejs.org/guide/essentials/watchers.html
  */
 
-import Vue from './modules/vue';
+import Vue from '../modules/vue/index.js';
 
 const vm = new Vue({
   data () {

@@ -16,9 +16,6 @@
  * .prevent和.passive不能连用，不推荐
  * 修饰符连用的情况，一定要注意顺序问题
  */
-
-import './main.scss';
-
 const App = {
   template: `
     <form @submit.prevent="onSubmit">

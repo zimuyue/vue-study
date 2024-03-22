@@ -1,4 +1,4 @@
-import { compileAttr } from "./compile";
+import { compileAttr } from "./compile.js";
 
 export function attrUpdate (vm, key) {
   const _stylePool = vm.$stylePool;

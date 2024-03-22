@@ -1,5 +1,5 @@
-import { REG_ARR, REG_OBJ, REG_SPACE } from "./regular";
-import { transformToKebab } from "./utils";
+import { REG_ARR, REG_OBJ, REG_SPACE } from "./regular.js";
+import { transformToKebab } from "./utils.js";
 
 /**
  * 

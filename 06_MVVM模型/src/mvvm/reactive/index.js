@@ -1,5 +1,5 @@
-import { isObject } from '../shared/utils';
-import { mutableHandler } from './mutableHandler';
+import { isObject } from '../shared/utils.js';
+import { mutableHandler } from './mutableHandler.js';
 
 export function useReactive (target) {
   return createReactObject(target, mutableHandler);

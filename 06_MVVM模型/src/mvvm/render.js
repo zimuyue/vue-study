@@ -1,6 +1,6 @@
-import { eventFormat, stateFormat } from ".";
-import { bindEvent } from "./compiler/event";
-import { statePool } from "./compiler/state";
+import { eventFormat, stateFormat } from "./index.js";
+import { bindEvent } from "./compiler/event.js";
+import { statePool } from "./compiler/state.js";
 
 // 2.
 // 用户传入的应用实例对象大致分为三个部分

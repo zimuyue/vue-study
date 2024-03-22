@@ -1,4 +1,4 @@
-import Vue from'../modules/vue';
+import Vue from'../modules/vue/index.js';
 
 /**
  * 条件渲染

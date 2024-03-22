@@ -1,4 +1,4 @@
-import { checkType, randomNum } from "../shared/utils";
+import { checkType, randomNum } from "../shared/utils.js";
 
 const reg_onClick = /onClick\=\"(.+?)\"/g;
 const reg_fnName = /^(.+?)\(/;

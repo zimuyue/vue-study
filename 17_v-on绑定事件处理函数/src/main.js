@@ -13,7 +13,7 @@
  * v-on:'eventType' -> v-on:click="" --->  @click=""
  */
 
-import TodoList from './TodoList';
+import TodoList from './TodoList.js';
 
 const App = {
   components: {

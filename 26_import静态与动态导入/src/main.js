@@ -15,19 +15,19 @@
  * 
  */
 
-// import { plus as computePlus, minus } from './utils';
+// import { plus as computePlus, minus } from './utils.js';
 
-// import utils from './utils';
+// import utils from './utils.js';
 
 // const { plus, minus } = utils;
 
 // 命名空间 -> 对象
 // 将整个模块导入进来并设置别名
-// import * as utils from './utils';
+// import * as utils from './utils.js';
 
 // const { plus, minus } = utils;
 
-// import { plus, minus } from './utils';
+// import { plus, minus } from './utils.js';
 
 // const res1 = plus(1, 2);
 // const res2 = minus(1, 2);
@@ -36,12 +36,12 @@
 
 // 副作用导入
 // 模块内部存在将要执行的代码
-// import './utils';
+// import './utils.js';
 
 // 默认导出的，导入时必须先声明
-// import utils, { plus, minus } from './utils';
+// import utils, { plus, minus } from './utils.js';
 
-// import utils, * as computedMethods from './utils';
+// import utils, * as computedMethods from './utils.js';
 
 // const { a, b } = utils;
 // const { plus, minus } = computedMethods;
@@ -67,7 +67,7 @@
  * 
  */
 
-// import('./utils').then(module => {
+// import('./utils.js').then(module => {
 //   const { a, b } = module.default;
 //   const { plus, minus } = module;
 
@@ -80,7 +80,7 @@
 (async () => {
   // 不能直接使用default，default作为关键字
   // 将default进行重命名就可以使用
-  const { default: { a, b }, plus, minus } = await import('./utils');
+  const { default: { a, b }, plus, minus } = await import('./utils.js');
 
   const res1 = plus(a, b);
   const res2 = minus(a, b);

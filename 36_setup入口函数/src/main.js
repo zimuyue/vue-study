@@ -1,25 +1,16 @@
+import { useTitle } from './hooks.js';
+import globalProperties from './globalProperties.js';
+
 const {
   createApp,
   ref,
   computed, 
   toRefs, 
   toRef, 
-  h, 
+  h,
+  inject,
   getCurrentInstance
 } = Vue;
-
-// 抽离功能组合API生成Hook函数
-const useTitle = function () {
-  // refAPI将数据包装成响应式对象
-  // 通过.value来访问数据值
-  const title = ref('This is My Title');
-  const setTitle = () => title.value = 'Change My Title';
-
-  return [
-    title,
-    setTitle
-  ]
-}
 
 const app = createApp({
   name: 'App',
@@ -48,6 +39,10 @@ const app = createApp({
    */ 
   setup (props, ctx/* context */) {
     const [title, setTitle] = useTitle();
+
+    // Vue不推荐你直接获取应用和组件实例
+    const { a, b, $http } = inject('globalProperties');
+    console.log(a, b, $http);
 
     const instance = getCurrentInstance();
     console.log(instance);
@@ -80,10 +75,12 @@ const app = createApp({
     // data computed methods refs  -> this
     // setup组件被创建之前执行的，执行期 -> 无法获取组件实例this
 
-    // expose是向外暴露一些内容供视图使用
-    // 但是可以通过return直接对外暴露为什么还要使用expose
-    // 因为return不仅能返回数据方法还可以返回h函数或者jsx模板
-    // 所以可以通过expose方法去额外暴露一些内容
+    /**
+     * expose是向外暴露一些内容供视图使用
+     * 但是可以通过return直接对外暴露为什么还要使用expose
+     * 因为return不仅能返回数据方法还可以返回h函数或者jsx模板
+     * 所以可以通过expose方法去额外暴露一些内容
+     */
     // ctx.expose({
     //   num: 100,
     //   test () {
@@ -104,4 +101,4 @@ const app = createApp({
   }
 })
 
-app.mount('#app');
+app.use(globalProperties).mount('#app');

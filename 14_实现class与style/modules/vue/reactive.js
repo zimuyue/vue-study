@@ -1,4 +1,4 @@
-import { attrUpdate } from "./update";
+import { attrUpdate } from "./update.js";
 
 export function reactive (vm, target) {
   for (let key in target) {

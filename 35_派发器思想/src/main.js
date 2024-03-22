@@ -17,7 +17,7 @@
  * 例如vuex redux使用了类似于这种派发器的思想
  */
 
-import router from './router';
+import router from './router.js';
 
 const app = Vue.createApp({
   name: 'App',

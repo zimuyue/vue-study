@@ -1,6 +1,6 @@
-import { reactive } from './reactive';
-import Computed from './Computed';
-import Watcher from './Watcher';
+import { reactive } from './reactive.js';
+import Computed from './Computed.js';
+import Watcher from './Watcher.js';
 
 class Vue {
   constructor (options) {
