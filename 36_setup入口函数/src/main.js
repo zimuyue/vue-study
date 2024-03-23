@@ -22,11 +22,12 @@ const app = createApp({
   `,
   /**
    * 组合式API的入口函数，所有组合式API都可以放入到setup内部执行
+   * 
    * 执行时期
    * 组件被创建之前，beforeCreate, props被解析之后，created执行
-   * 使用组合式API时，没有beforeCreate与created声明周期函数
+   * 使用组合式API时，没有beforeCreate与created生命周期函数
    * 
-   * 在组件创建之前自动执行
+   * setup在组件创建之前自动执行
    */
 
   /**

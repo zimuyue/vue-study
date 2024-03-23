@@ -1,15 +1,6 @@
-import {
-  ref,
-  createRefs
-} from './hooks.js';
-
-import {
-  render
-} from './render.js';
-
-import {
-  bindEvent
-} from './event.js';
+import { ref, createRefs } from './hooks.js';
+import { render } from './render.js';
+import { bindEvent } from './event.js';
 
 function createApp (el, { refs, methods }) {
   const $el = document.querySelector(el);

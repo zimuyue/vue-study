@@ -50,9 +50,9 @@ const app = createApp({
     /**
      * 当我们将功能全部写入setup入口函数中
      * 会导致setup过于臃肿，并且数据与功能的定义分散
-     * 导致操作数据的行为不具备语义化
+     * 操作数据的行为不具备语义化
      * 
-     * React Hooks思想
+     * 使用React Hooks思想
      * 集成定义数据，数据与操作数据的方法一起被定义
      */
     const [ count1, setCount1 ] = useState(0);

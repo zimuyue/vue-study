@@ -45,7 +45,8 @@ function defineReactive (data, key, value) {
 }
 
 // Vue3响应式优点不用逐个属性定义get和set函数
-// Proxy的实例是针对原对象的一个代理对象
+// Proxy是针对源对象的一个代理引用，属于引用容器
+// 当源对象数据发生变更时，代理引用也会发生变化
 function _reactive (data) {
   return new Proxy(data, {
     get (target, key) {

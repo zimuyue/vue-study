@@ -21,7 +21,7 @@ const app = createApp({
   setup () {
     /**
      * ref -> reference引用
-     * 针对所有值的定制化的引用包装，保证响应式同时，还可以进行函数传递
+     * 针对所有值的定制化的引用包装，保证响应式同时，还可以向函数传递参数ref
      * 可以对DOM元素上进行ref引用，通常用于原始类型的包装
      */
     const titleRef = ref(null);
@@ -71,7 +71,7 @@ const app = createApp({
      */
     const setTitle = () => {
       status.title = '我的标题';
-      // console.log(titleRef.value.innerText); // 'This is My Ttile'
+      console.log(titleRef.value.innerText); // 'This is My Ttile'
       
       // nextTick在状态更改完成以后立即执行，等待DOM更新完毕后，执行回调函数
       const p = nextTick(() => {

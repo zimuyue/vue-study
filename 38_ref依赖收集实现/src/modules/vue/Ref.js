@@ -1,6 +1,4 @@
-import {
-  update
-} from './render.js';
+import { update } from './render.js';
 
 export default class Ref {
   constructor (initialValue) {
