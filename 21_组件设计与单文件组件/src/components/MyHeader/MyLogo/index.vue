@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'my-logo'
+  name: 'MyLogo'
 }
 </script>
 

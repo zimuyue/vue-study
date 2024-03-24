@@ -62,7 +62,7 @@ const TodoList = {
 
 const app = createApp(TodoList);
 
-app.component('todo-form', {
+app.component('TodoForm', {
   data () {
     return {
       inputValue: ''
@@ -82,7 +82,7 @@ app.component('todo-form', {
   }
 });
 
-app.component('todo-item', {
+app.component('TodoItem', {
   props: ['todo'],
   template: `
     <li>

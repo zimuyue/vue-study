@@ -1,12 +1,10 @@
 <template>
   <div>
-    <todo-input
-      @change-content="changeContent"
+    <TodoInput
       ref="todoInput"
-    ></todo-input>
-    <todo-button
-      @add-todo="addTodo"
-    ></todo-button>
+      @change-content="changeContent"
+    />
+    <TodoButton @add-todo="addTodo" />
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <ul class="my-nav">
-    <nav-item
+    <NavItem
       v-for="item of navData"
       :key="item.id"
       :nav-item="item"
@@ -13,7 +13,7 @@
 import NavItem from './NavItem';
 
 export default {
-  name: 'my-nav',
+  name: 'MyNav',
   components: {
     NavItem
   },

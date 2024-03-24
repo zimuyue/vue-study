@@ -1,18 +1,12 @@
 <template>
   <div>
-    <todo-header
-      @add-todo="addTodo"
-    ></todo-header>
-
-    <todos
+    <TodoHeader @add-todo="addTodo" />
+    <Todos
       :data="todoList"
       @toggle-completed="toggleCompleted"
       @remove-todo="removeTodo"
-    ></todos>
-
-    <todo-footer
-      @remove-all="removeAll"
-    ></todo-footer>
+    />
+    <TodoFooter @remove-all="removeAll" />
   </div>
 </template>
 

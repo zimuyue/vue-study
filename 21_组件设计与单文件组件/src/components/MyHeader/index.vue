@@ -1,9 +1,9 @@
 <template>
   <header>
-    <my-logo />
-    <my-search />
-    <my-nav :nav-data="navData" />
-    <my-user />
+    <MyLogo />
+    <MySearch />
+    <MyNav :nav-data="navData" />
+    <MyUser />
   </header>
 </template>
 
@@ -13,7 +13,7 @@ import MyNav from './MyNav';
 import MyUser from './MyUser';
 
 export default {
-  name: 'my-header',
+  name: 'MyHeader',
   components: {
     MyLogo,
     MyNav,

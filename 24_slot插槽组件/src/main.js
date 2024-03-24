@@ -15,7 +15,7 @@ const app = Vue.createApp({
   // 后备内容 -> 使用组件时不使用插槽则显示组件中<slot>标签里内容
   template: `
     <div>
-      <my-button
+      <MyButton
         @click="changeStatus"
         :disabled="isLoading"
         :loading-icon="true"
@@ -25,18 +25,18 @@ const app = Vue.createApp({
         <!-- <template #default></template> -->
 
         <template #content>Me!</template>
-      </my-button>
+      </MyButton>
 
-      <my-slot>
+      <MySlot>
         <template v-slot:[slotName]>
           <h1>This is {{ slotName }}</h1>
         </template>
-      </my-slot>
+      </MySlot>
 
-      <pic-board #default="props">
+      <PicBoard #default="props">
         <h2>{{ props.title }}</h2>
         <p>{{ props.desc }}</p>
-      </pic-board>
+      </PicBoard>
     </div>
   `,
   methods: {
@@ -49,15 +49,15 @@ const app = Vue.createApp({
   }
 })
 
-app.component('my-button', {
+app.component('MyButton', {
   name: 'MyButton',
   props: ['loadingIcon', 'is-loading'],
   template: `
     <button>
-      <my-icon
+      <MyIcon
         :loading-icon="loadingIcon"
         :is-loading="isLoading"
-      ></my-icon>
+      />
 
       <!-- slot之间的内容是默认值 -->
       <slot name="content"></slot>
@@ -68,7 +68,7 @@ app.component('my-button', {
   `
 })
 
-app.component('my-icon', {
+app.component('MyIcon', {
   name: 'MyIcon',
   props: ['loadingIcon', 'isLoading'],
   template: `
@@ -79,7 +79,7 @@ app.component('my-icon', {
   `
 })
 
-app.component('my-slot', {
+app.component('MySlot', {
   name: 'MySlot',
   template: `
     <div>
@@ -93,7 +93,7 @@ app.component('my-slot', {
   `
 })
 
-app.component('pic-board', {
+app.component('PicBoard', {
   name: 'PicBoard',
   data () {
     return {

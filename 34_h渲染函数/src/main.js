@@ -50,10 +50,10 @@ const app = createApp({
     // ])
 
     // 全局注册的组件
-    // return h(resolveComponent('my-test'))
+    // return h(resolveComponent('MyTest'))
 
     // 局部注册可以直接使用h函数或者resolveComponent
-    // return h('my-test')
+    // return h('MyTest')
 
     // v-if渲染
     // return h('h1', [
@@ -70,7 +70,7 @@ const app = createApp({
     // ])
 
     // v-slot渲染
-    // return h(resolveComponent('my-slot'), null, {
+    // return h(resolveComponent('MySlot'), null, {
     //   default: () => 'My Slot',
     //   title: () => this.title,
     //   content: (props) => h('p', props.content)
@@ -78,14 +78,14 @@ const app = createApp({
   }
 })
 
-app.component('my-test', {
+app.component('MyTest', {
   name: 'MyTest',
   render () {
     return h('div', 'My Test Component')
   }
 })
 
-app.component('my-slot', {
+app.component('MySlot', {
   name: 'MySlot',
   render () {
     // console.log(this.$slots)

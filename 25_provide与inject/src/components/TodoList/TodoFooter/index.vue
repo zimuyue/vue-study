@@ -1,9 +1,7 @@
 <template>
   <div>
-    <todo-info></todo-info>
-    <todo-clear
-      @remove-all="removeAll"
-    ></todo-clear>
+    <TodoInfo />
+    <TodoClear @remove-all="removeAll" />
   </div>
 </template>
 

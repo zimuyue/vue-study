@@ -20,7 +20,7 @@
  * customElements.define
  */
 
-window.customElements.define('my-info',
+window.customElements.define('MyInfo',
   class extends HTMLElement {
     constructor () {
       super();
@@ -104,4 +104,4 @@ class MyArticle extends HTMLElement {
   }
 }
 
-window.customElements.define('my-article', MyArticle);
+window.customElements.define('MyArticle', MyArticle);

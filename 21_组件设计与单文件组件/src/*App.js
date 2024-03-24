@@ -21,8 +21,8 @@ const App = {
   },
   template: `
     <div>
-      <my-header :nav-data="navData" />
-      <my-header :nav-data="navData2" />
+      <MyHeader :nav-data="navData" />
+      <MyHeader :nav-data="navData2" />
     </div>
   `
 }

@@ -39,12 +39,12 @@ const testMixin =  {
 const app = Vue.createApp({
   name: 'App',
   template: `
-    <test></test>
+    <Test></Test>
   `
 });
 
 // 注册全局组件
-app.component('test', {
+app.component('Test', {
   name: 'Test',
   mixins: [
     testMixin

@@ -9,7 +9,7 @@ const MyNav = {
   props: ['navData'],
   template: `
     <ul class="my-nav">
-      <nav-item
+      <NavItem
         v-for="item of navData"
         :key="item.id"
         :nav-item="item"

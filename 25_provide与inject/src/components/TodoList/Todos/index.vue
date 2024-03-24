@@ -1,13 +1,13 @@
 <template>
   <div>
     <ul v-if="todoLen.value > 0">
-      <todo-item
+      <TodoItem
         v-for="item of data"
         :key="item.id"
         :item="item"
         @toggle-completed="toggleCompleted"
         @remove-todo="removeTodo"
-      ></todo-item>
+      />
     </ul>
     <p v-else>- 当前没有数据 -</p>
   </div>

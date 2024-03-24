@@ -129,9 +129,9 @@ const App = {
   },
   template: `
     <div>
-      <my-title :content="content">{{ title }}</my-title>
-      <my-author>{{ author }}</my-author>
-      <my-content @to-lower-case="toLowerCase">{{ content }}</my-content>
+      <MyTitle :content="content">{{ title }}</MyTitle>
+      <MyAuthor>{{ author }}</MyAuthor>
+      <MyContent @to-lower-case="toLowerCase">{{ content }}</MyContent>
     </div>
   `,
   methods: {

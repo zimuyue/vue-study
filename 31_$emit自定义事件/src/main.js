@@ -8,8 +8,8 @@ const app = Vue.createApp({
   },
   template: `
     <div>
-      <counter @add-my-count="addMyCount"></counter>
-      <my-input v-model:my-name.prefixer="myName"></my-input>
+      <Counter @add-my-count="addMyCount" />
+      <MyInput v-model:my-name.prefixer="myName" />
     </div>
   `,
   methods: {
@@ -19,7 +19,7 @@ const app = Vue.createApp({
   }
 })
 
-app.component('counter', {
+app.component('Counter', {
   name: 'Counter',
   // 事件名：camcelCase
   // 注册自定义事件
@@ -31,7 +31,7 @@ app.component('counter', {
 })
 
 
-app.component('my-input', {
+app.component('MyInput', {
   name: 'MyInput',
   props: {
     myName: String,

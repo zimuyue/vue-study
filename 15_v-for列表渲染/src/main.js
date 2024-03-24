@@ -141,11 +141,11 @@ var App = {
       达到最好的复用效果
     -->
     <ul>
-      <list-item
+      <ListItem
         v-for="item of list"
         :key="item.id"
         :item="item"
-      ></list-item>
+      />
     </ul>
   `,
   components: {

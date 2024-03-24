@@ -21,15 +21,14 @@ const app = Vue.createApp({
   },
   template: `
     <div>
-      <my-selector 
+      <MySelector 
         :value="selectorValue"
         model="123"
         id="mySelector"
         class="my-selector"
         @change="changeOption"
-      ></my-selector>
-
-      <login-box autofocus></login-box>
+      />
+      <LoginBox autofocus />
     </div>
   `,
   methods: {
@@ -40,7 +39,7 @@ const app = Vue.createApp({
   }
 })
 
-app.component('my-selector', {
+app.component('MySelector', {
   name: 'MySelector',
   // v-bind="$attrs"
   // 这样的绑定的方式具有平铺属性的作用
@@ -53,7 +52,7 @@ app.component('my-selector', {
   `
 })
 
-app.component('login-box', {
+app.component('LoginBox', {
   name: 'LoginBox',
   inheritAttrs: false,
   template: `

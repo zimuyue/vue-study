@@ -8,7 +8,7 @@
 const app = Vue.createApp({
   name: 'App',
   template: `
-    <my-test ref="myTest"></my-test>
+    <MyTest ref="myTest" />
   `,
   // beforeCreate () {
   //   console.log(this.$refs);
@@ -48,7 +48,7 @@ const app = Vue.createApp({
   }
 })
 
-app.component('my-test', {
+app.component('MyTest', {
   name: 'MyTest',
   template: `
     <button @click="handleLog">点击</button>

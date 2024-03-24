@@ -21,15 +21,15 @@ const app = Vue.createApp({
     }
   },
   template: `
-    <my-button 
+    <MyButton
       btn-type="warning" 
       :count="count" 
       :status="status"
-    >Click</my-button>
+    >Click</MyButton>
   `
 })
 
-app.component('my-button', {
+app.component('MyButton', {
   name: 'MyButton',
   props: {
     // null undefined 可以通过任何的数据类型检查

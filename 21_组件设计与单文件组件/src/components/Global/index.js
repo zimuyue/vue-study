@@ -1,5 +1,5 @@
 function globalComponents (app) {
-  app.component('my-search', {
+  app.component('MySearch', {
     data () {
       return {
         placeholder: 'Please type the keyword...',

@@ -1,16 +1,14 @@
 <template>
   <li>
-    <todo-check
+    <TodoCheck
       :item="item"
       @todo-check="todoCheck"
-    ></todo-check>
-    <todo-content
-      :item="item"
-    ></todo-content>
-    <todo-remove
+    />
+    <TodoContent :item="item" />
+    <TodoRemove
       :item="item"
       @remove-todo="removeTodo"
-    ></todo-remove>
+    />
   </li>
 </template>
 

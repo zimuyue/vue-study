@@ -11,9 +11,9 @@ const MyHeader = {
   props: ['navData'],
   template: `
     <header>
-      <my-logo />
-      <my-nav :nav-data="navData" />
-      <my-user />
+      <MyLogo />
+      <MyNav :nav-data="navData" />
+      <MyUser />
     </header>
   `
 }
