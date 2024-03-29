@@ -7,10 +7,7 @@ import {
   createDispatch
 } from './creators.js';
 
-const {
-  reactive,
-  inject
-} = Vue;
+const { inject } = Vue;
 
 class Store {
   constructor (options) {

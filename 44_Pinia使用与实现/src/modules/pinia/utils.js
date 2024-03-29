@@ -1,15 +1,14 @@
 const { isRef } = Vue;
 
-export const piniaSymbol = Symbol('pinia'); // 防止全局变量污染
-
 export function getArgs (args) {
-  let id,
-      options,
-      setup;
-
-  // defineStore('counterStore', {});
-  // defineStore('counterStore', () => {});
-  // defineStore({});
+  /**
+   * id,
+   * options,  { id: xxx }
+   * setup
+   */
+  let id;
+  let options;
+  let setup;
 
   if (isString(args[0])) {
     id = args[0];
@@ -19,10 +18,9 @@ export function getArgs (args) {
     } else {
       options = args[1];
     }
-
   } else {
-    id = args[0].id;
     options = args[0];
+    id = args[0].id;
   }
 
   return {
@@ -32,33 +30,34 @@ export function getArgs (args) {
   }
 }
 
-export function isString (val) {
-  return typeof val === 'string';
+export function isString (value) {
+  return typeof value === 'string';
 }
 
-export function isFunction (val) {
-  return typeof val === 'function';
+export function isFunction (value) {
+  return typeof value === 'function';
 }
 
-export function isComputed (val) {
-  return !!(isRef(val) && val.effect);
+export function isComputed (value) {
+  return !!(isRef(value) && value.effect);
 }
 
-export function isObject (val) {
-  return typeof val === 'object' && val !== null;
+export function isObject (value) {
+  return typeof value === 'object' && value !== null;
 }
 
 export function mergeObject (targetState, newState) {
-  for (let key in newState) {
-    const oldVal = targetState[key],
-          newVal = newState[key];
+  for (let k in newState) {
+    const oldVal = targetState[k];
+    const newVal = newState[k];
 
     if (isObject(oldVal) && isObject(newVal)) {
-      targetState[key] = mergeObject (oldVal, newVal);
+      targetState[k] = mergeObject(oldVal, newVal);
     } else {
-      targetState[key] = newVal;
+      targetState[k] = newVal;
     }
   }
+
   return targetState;
 }
 
@@ -66,7 +65,7 @@ export const subscription = {
   add (list, cb) {
     list.push(cb);
   },
-  triggle (list, args) {
-    list.forEach(cb => cb(args));
+  triggle (list, ...args) {
+    list.forEach(cb => cb(...args));
   }
 }

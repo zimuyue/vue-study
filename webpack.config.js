@@ -22,7 +22,7 @@ const autoprefixer = require('autoprefixer');
  * vue-style-loader
  */
 
-const _ = './35_派发器思想/';
+const _ = './44_Pinia使用与实现/';
 
 module.exports = {
   mode: 'development',

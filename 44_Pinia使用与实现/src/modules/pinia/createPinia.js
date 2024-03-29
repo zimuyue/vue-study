@@ -1,18 +1,29 @@
+import { piniaSymbol } from "./global.js";
+
 const { effectScope, ref } = Vue;
 
-import { piniaSymbol } from './utils.js';
-
 export default function createPinia () {
-  // pinia中可以对state停止响应式
-  // 通过effectScope创建一个独立的作用域来暂停活跃state对象
+  /**
+   * {
+   *   state
+   * }
+   */
   const scope = effectScope(true);
   const state = scope.run(() => ref({}));
   const store = new Map();
+  const plugins = [];
+
+  function use (cb) {
+    plugins.push(cb);
+    return this;
+  }
 
   return {
+    use,
+    store,   // _s
     state,
-    store,
-    scope,
+    scope,  // _e
+    plugins, // _p
     install
   }
 }

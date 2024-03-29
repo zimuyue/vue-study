@@ -1,3 +1,3 @@
-# Vue 学习
+# Vue
 
-JSplusplus Vue 源码学习 Vue 本尊系列
+JSplusplus Vue 生态学习

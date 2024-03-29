@@ -1,21 +1,3 @@
-const { createApp } = Vue;
-const {
-  // createPinia,
-  storeToRefs
-} = Pinia;
-
-import { createPinia } from './modules/pinia/index.js';
-
-import {
-  useCounterStore,
-  useConfigStore
-} from './store.js';
-
-// pinia是一个对象用来管理所有创建出来的store -> _s Map
-const pinia = createPinia();
-
-console.log('pinia:', pinia);
-
 /**
  * Pinia是状态管理库
  * 对比Vuex库，Pinia设计团队认为mutation是冗余的
@@ -24,68 +6,56 @@ console.log('pinia:', pinia);
  * 
  * createPinia -> 创建一个统一管理用户定义的store容器 -> pinia
  * defineStore -> 创建拥有state getters actions的store容器
+ * 
+ * $patch => 更新局部的状态
+ * store.$patch({
+ *    b: 20,
+ *    c: 30
+ * })
+ * 
+ * $reset => 状态回到最初的值（options API）
+ * 
+ * $subscribe 订阅
+ * store.$subscribe(() => {
+ *    state状态更新时触发
+ * })
+ * 
+ * $onAction(() => {
+ *    调用了action函数的时候，触发onAction => 执行回调函数
+ * })
+ * 
+ * $dispose() => 作用域内响应式停止
+ * computed watch watchEffect -> scope.stop()
  */
+const { createApp } = Vue;
+import './style.css'
+import App from './App.vue'
+import { createPinia } from './modules/pinia/index.js';
+// const { createPinia } = Pinia;
 
-const app = createApp({
-  name: 'App',
-  template: `
-    <div>
-      <div>
-        <h1>{{ count }}</h1>
-        <h2>{{ doubleCount }}</h2>
-        <button @click="increment">Click!</button><br />
-        <button @click="handlePatch">Patch!</button><br />
-      </div>
-      <div>
-        <h2>{{ aside }}</h2>
-        <h3>{{ totalCount }}</h3>
-        <button @click="addAside">Add!</button>
-        <button @click="handleReset">Reset!</button>
-      </div>
-    </div>
-  `,
-  setup () {
-    const store = useCounterStore();
-    const { count, doubleCount } = storeToRefs(store);
-    const { increment } = store;
+const pinia = createPinia();
 
-    const cStore = useConfigStore();
-    const { addAside } = cStore;
+console.log(pinia);
 
-    const handlePatch = () => {
-      store.$patch({ count: 100 });
-    }
+pinia.use(function ({ store }) {
+  const localState = JSON.parse(localStorage.getItem('PINIA_STATE_' + store.$id) || `{
+    "count": 0,
+    "todoList": []
+  }`);
 
-    const handleReset = () => {
-      cStore.$reset();
-    }
+  store.$state = localState;
 
-    store.$subscribe((info, state) => {
-      console.log(info, state);
-    })
+  store.$subscribe(({ storeId }, state) => {
+    localStorage.setItem('PINIA_STATE_' + storeId, JSON.stringify(state));
+  });
 
-    cStore.$onAction(({ after, onError }) => {
-      console.log('before:', cStore.aside);
+  store.$onAction(() => {
+    console.log('已调用action');
+  });
 
-      after(() => {
-        console.log('after:', cStore.aside);
-      })
-
-      onError((err) => {
-        console.log('error:', err);
-      })
-    })
-
-    return {
-      count,
-      doubleCount,
-      increment,
-      handlePatch,
-      ...storeToRefs(cStore),
-      addAside,
-      handleReset
-    }
+  return {
+    a: 1
   }
 })
 
-app.use(pinia).mount('#app');
+createApp(App).use(pinia).mount('#app')

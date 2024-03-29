@@ -1,9 +1,6 @@
 import { forEachValueKey } from './utils.js';
 
-const {
-  computed,
-  reactive
-} = Vue;
+const { computed, reactive } = Vue;
 
 export function createState (store, state) {
   const _state = typeof state === 'function' ? state() : state;

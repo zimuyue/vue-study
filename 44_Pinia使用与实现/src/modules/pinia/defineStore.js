@@ -1,26 +1,36 @@
+
+/**
+ * options
+ * id, options,
+ * id, setup
+ */
+
+import { piniaSymbol } from "./global.js";
+
 import {
   getArgs,
-  piniaSymbol,
-  isFunction,
   isComputed,
+  isFunction,
   subscription
-} from './utils.js';
+} from "./utils.js";
 
 import {
   actionList,
   createOnAction,
   createPatch,
   createReset,
-  createSubscribe
-} from './apiCreator.js';
+  createDispose,
+  createSubscribe,
+  createState
+} from "./apiCreator.js";
 
 const {
-  inject,
-  reactive,
-  effectScope,
-  isRef,
-  isReactive,
   computed,
+  effectScope,
+  inject,
+  isReactive,
+  isRef,
+  reactive,
   toRefs
 } = Vue;
 
@@ -28,10 +38,10 @@ function createAPIs (pinia, id, scope) {
   return {
     $patch: createPatch(pinia, id),
     $subscribe: createSubscribe(pinia, id, scope),
-    $onAction: createOnAction()
+    $onAction: createOnAction(),
+    $dispose: createDispose(pinia, id, scope)
   }
 }
-
 
 export default function defineStore (...args) {
   const {
@@ -42,61 +52,108 @@ export default function defineStore (...args) {
 
   const isSetup = isFunction(setup);
   
-  // 创建store
-  function useStore () {
+  /**
+   * 1. pinia导入
+   * 2. 判断pinia.store => id
+   *    没有 => 创建store
+   *    有 => 返回
+   */
+  function useStore () { // 创建store
     const pinia = inject(piniaSymbol);
-    // 如果没有store就去创建
+
     if (!pinia.store.has(id)) {
       if (isSetup) {
+        /**
+         * pinia.store => id => store(setup)
+         */
         createSetupStore(pinia, id, setup);
       } else {
         createOptionStore(pinia, id, options);
       }
     }
+    
+    // store => Map => get set has
     return pinia.store.get(id);
   }
 
   return useStore;
 }
 
+/**{
+ *   state,
+ *   store,
+ *   scope,
+ *   install
+ * } */
 function createSetupStore (pinia, id, setup) {
   const setupStore = setup();
+  /**
+   * pinia APIs
+   * count
+   * todoList
+   * addTodo
+   * removeTodo,
+   * toggleTodo
+   */
 
-  let store,
-      storeScope;
+  /**
+   * $patch,
+   * $reset,
+   * $dispose
+   * 
+   * {
+   *   $patch,
+   *   $reset,
+   *   $dispose
+   * }
+   */
+  let store;
+  let storeScope;
 
   const result = pinia.scope.run(() => {
     storeScope = effectScope();
     store = reactive(createAPIs(pinia, id, storeScope));
-    return storeScope.run(() => complieSetup(pinia, id, setupStore));
-  })
+    return storeScope.run(() => compileSetup(pinia, id, setupStore));
+  });
 
   return setStore(pinia, id, store, result);
 }
 
-function setStore (pinia, id, store, result, stateFn) {
-  pinia.store.set(id, store);
-  store.$id = id;
-  stateFn && (store.$reset = createReset(store, stateFn));
-  Object.assign(store, result);
-  return store;
-}
-
-function complieSetup (pinia, id, setupStore) {
+function compileSetup (pinia, id, setupStore) {
   !pinia.state.value[id] && (pinia.state.value[id] = {});
+  
 
+  // ref  reactive   computedx  methods x
   for (let key in setupStore) {
     const el = setupStore[key];
 
-    if ((isRef(el) || !isComputed(el)) || isReactive(el)) {
+    if ((isRef(el) && !isComputed(el)) || isReactive(el)) {
+      /**
+       * pinia {
+       *   state: {
+       *     "todolist1": {
+       *       todoList: []
+       *     }
+       *   }
+       * }
+       */
       pinia.state.value[id][key] = el;
     }
   }
 
   return {
+    /**
+     * count,
+     * todoList
+     * addTodo,
+     * removeTodo,
+     * toggleTodo
+     */
     ...setupStore
   }
 }
+
+// ----------------------------------------
 
 function createOptionStore (pinia, id, options) {
   const {
@@ -105,23 +162,23 @@ function createOptionStore (pinia, id, options) {
     actions
   } = options;
 
-  let store,
-      storeScope;
-  
+  let store;
+  let storeScope;
+
   const result = pinia.scope.run(() => {
     storeScope = effectScope();
     store = reactive(createAPIs(pinia, id, storeScope));
-    return storeScope.run(() => complieOptions(pinia, id, store, {
+    return storeScope.run(() => compileOptions(pinia, id, store, {
       state,
       getters,
       actions
-    }));
-  })
+    }))
+  });
 
-  return setStore(pinia, id, store, result, state);
+  return setStore(pinia, id, store, result, options.state);
 }
 
-function complieOptions (pinia, id, store, {
+function compileOptions(pinia, id, store, {
   state,
   getters,
   actions
@@ -139,32 +196,55 @@ function complieOptions (pinia, id, store, {
 
 function createStoreState (pinia, id, state) {
   pinia.state.value[id] = state ? state() : {};
+  /**
+   * {
+   *    todolist1: ref(pinia.state.value['todolist1'])
+   *    todolist2: ref(pinia.state.value['todolist2'])
+   * }
+   */
   return toRefs(pinia.state.value[id]);
 }
 
 function createStoreGetters (store, getters) {
+  /**
+   * getters: {
+   *   count () {
+   *    // this => store
+   *     return this.todoList.length
+   *   }
+   * }
+   */
+  // [ count, count1, ]
+
+  /**
+   * {
+   *   count: computed(() => getters.count.call(store))
+   * }
+   */
   return Object.keys(getters || {}).reduce((wrapper, getterName) => {
     wrapper[getterName] = computed(() => getters[getterName].call(store));
     return wrapper;
-  }, {})
+  }, {});
 }
 
 function createStoreActions (store, actions) {
   return Object.keys(actions || {}).reduce((wrapper, actionName) => {
     wrapper[actionName] = function () {
       let res;
-
-      const afterList = [],
-            errorList = [];
-
+      const afterList = [];
+      const errorList = [];
+      
       subscription.triggle(actionList, { after, onError });
 
       try {
+        // addTodo toggleTodo removeTodo
         res = actions[actionName].apply(store, arguments);
       } catch (e) {
+        // 所有的onError的回调
         subscription.triggle(errorList, e);
       }
-
+      
+      // addTodo => promise
       if (res instanceof Promise) {
         return res.then(r => {
           return subscription.triggle(afterList, r);
@@ -173,6 +253,10 @@ function createStoreActions (store, actions) {
           return Promise.reject(e);
         })
       }
+      
+      // 所有的after的回调
+      subscription.triggle(afterList, res);
+      return res;
 
       function after (cb) {
         afterList.push(cb);
@@ -181,10 +265,46 @@ function createStoreActions (store, actions) {
       function onError (cb) {
         errorList.push(cb);
       }
-
-      subscription.triggle(afterList, res);
-      return res;
     }
     return wrapper;
-  }, {})
+  }, {});
 }
+
+// -------------------------------
+
+function setStore (pinia, id, store, result, stateFn) {
+  pinia.store.set(id, store);
+  store.$id = id;
+  stateFn && (store.$reset = createReset(store, stateFn));
+  Object.assign(store, result);
+  createState(pinia, id);
+  runPlugins(pinia, store);
+  return store;
+}
+
+function runPlugins (pinia, store) {
+  pinia.plugins.forEach(plugin => {
+    const res = plugin({ pinia, store });
+
+    if (res) {
+      Object.assign(store, res);
+    }
+  })
+}
+
+/**
+ * test(() => {})
+ * test(() => {})
+ * test(() => {})
+ * test(() => {})
+ * 
+ * const list = [];
+ * 
+ * function test (cb) {
+ *   list.push(cb);
+ * }
+ * 
+ * function onMounted() {
+ *   list.forEach(cb => cb());
+ * }
+ */
