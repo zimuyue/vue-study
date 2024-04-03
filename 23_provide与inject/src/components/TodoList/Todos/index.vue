@@ -1,0 +1,41 @@
+<template>
+  <div>
+    <ul v-if="todoLen.value > 0">
+      <TodoItem
+        v-for="item of data"
+        :key="item.id"
+        :item="item"
+        @toggle-completed="toggleCompleted"
+        @remove-todo="removeTodo"
+      />
+    </ul>
+    <p v-else>- 当前没有数据 -</p>
+  </div>
+</template>
+
+<script>
+
+import TodoItem from './TodoItem';
+
+export default {
+  name: 'Todos',
+  props: ['data'],
+  // 来自于 index.vue
+  inject: ['todoLen'],
+  components: {
+    TodoItem
+  },
+  methods: {
+    toggleCompleted (id) {
+      this.$emit('toggleCompleted', id);
+    },
+    removeTodo (id) {
+      this.$emit('removeTodo', id);
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>
