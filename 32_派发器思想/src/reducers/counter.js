@@ -1,3 +1,4 @@
+// reducer 真正的工作者计算数据
 function counterReducer (data) {
   function plus () {
     return ++ data.result;

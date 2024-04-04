@@ -6,22 +6,22 @@ export default class Dep {
   // 记录副作用回调函数
   static effectCB = null;
 
-  /**
-   * 依赖收集
-   * WeakMap -> 弱引用
-   * {
-   *   { a, b, c: {..d.} }: Map {
-   *     {..d.}: Set [ cb, cb ]
-   *     a: Set [cb, cb]
-   *     b: Set [cb, cb]
-   *   },
-   *   { a, b, c: {..d.} }: Map {
-   *     {..d.}: Set [ cb, cb ]
-   *     a: Set [cb, cb]
-   *     b: Set [cb, cb]
-   *   }
-   * }
-   */
+  /*
+    依赖收集
+    WeakMap -> 弱引用
+    {
+      { a, b, c: {..d.} }: Map {
+        {..d.}: Set [ cb, cb ]
+        a: Set [cb, cb]
+        b: Set [cb, cb]
+      },
+      { a, b, c: {..d.} }: Map {
+        {..d.}: Set [ cb, cb ]
+        a: Set [cb, cb]
+        b: Set [cb, cb]
+      }
+    }
+  */
   collect (target, key) {
     const { effectCB } = Dep;
     

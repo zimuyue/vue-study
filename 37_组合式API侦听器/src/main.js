@@ -40,35 +40,35 @@ const app = createApp({
       }
     })
 
-    /**
-     * 侦听器
-     * 侦听依赖 -> 响应式数据，值变更的时候
-     * 能侦听到这个变化，从而提供给开发者一个API接口回调
-     * 完成接下来的自定义任务
-     * 
-     * 侦听title.value值，当触发数据变更时，执行回调函数
-     * 回调函数会记录变更前的值与变更后的值
-     */
+    /*
+      侦听器
+      侦听依赖 -> 响应式数据，值变更的时候
+      能侦听到这个变化，从而提供给开发者一个 API 接口回调
+      完成接下来的自定义任务
+      
+      侦听 title.value 值，当触发数据变更时，执行回调函数
+      回调函数会记录变更前的值与变更后的值
+    */
     watch(title, (cur, prev) => {
       // console.log('title:', cur, prev);
     })
 
-    /**
-     * watch -> getter函数
-     * 根据第一个回调函数getter内部依赖的数据发生变化时
-     * 将返回的值，作为第二个回调函数执行时的参数
-     */ 
+    /*
+      watch -> getter 函数
+      根据第一个回调函数 getter 内部依赖的数据发生变化时
+      将返回的值，作为第二个回调函数执行时的参数
+    */ 
     watch(() => {
       return `我演讲的题目是『${ title.value }』，我要讲的是"${ content.value }"`
     }, (newValue) => {
       // console.log(newValue);
     })
 
-    /**
-     * watch的第一个参数
-     * 只能是getter/effect函数或者是ref、reactive、array
-     * 是无法侦听原始值的，必须是响应式引用
-     */
+    /*
+      watch 的第一个参数
+      只能是 getter/effect 函数或者是 ref、reactive、array
+      是无法侦听原始值的，必须是响应式引用
+    */
     // watch(state.name, (cur, prev) => {
     //   console.log(cur, prev);
     // })
@@ -76,12 +76,12 @@ const app = createApp({
       // console.log('getter:', cur, prev);
     })
 
-    /**
-     * watch侦听深度
-     * 如果侦听的是响应式引用值，watch会隐式地创建一个深层侦听器
-     * 如果使用getter函数时，仅当state.article被替换时触发
-     * 想要触发侦听使用deep
-     */
+    /*
+      watch 侦听深度
+      如果侦听的是响应式引用值，watch 会隐式地创建一个深层侦听器
+      如果使用 getter 函数时，仅当 state.article 被替换时触发
+      想要触发侦听使用 deep
+    */
     watch(
       state.article,
       // () => state.article,
@@ -92,29 +92,29 @@ const app = createApp({
     )
     state.article.name = 'VLONG';
 
-    /**
-     * watch侦听DOM节点
-     * 默认情况下，组件更新之前被调用
-     * 获取到的value是组件更新之前的DOM
-     */
+    /*
+      watch 侦听 DOM 节点
+      默认情况下，组件更新之前被调用
+      获取到的 value 是组件更新之前的 DOM
+    */
     const titleRef = ref(null);
     watch(title, () => {
       // console.log('titleRef:', titleRef.value.innerText);
     })
 
-    /**
-     * 拿到DOM更新之后的innerText 
-     * flush: 'pre | post | sync'
-     * 
-     * pre: 默认配置，组件挂载、组件更新前执行副作用回调，缓存副作用回调，异步执行
-     *      改变多个依赖，只会调用一次副作用函数
-     * 
-     * post: 组件挂载、组件更新后执行副作用回调，缓存副作用回调，异步执行
-     *       改变多个依赖，只会调用一次副作用函数
-     * 
-     * sync: 组件挂载、组件更新前执行副作用回调，不缓存副作用回调, 同步执行
-     *       同时改变多个依赖数据值，多次调用副作用函回调
-     */
+    /*
+      拿到 DOM 更新之后的 innerText 
+      flush: 'pre | post | sync'
+      
+      pre: 组件挂载、组件更新前执行副作用回调，缓存副作用回调，异步执行
+           改变多个依赖，只会调用一次副作用函数（默认配置）
+      
+      post: 组件挂载、组件更新后执行副作用回调，缓存副作用回调，异步执行
+            改变多个依赖，只会调用一次副作用函数
+      
+      sync: 组件挂载、组件更新前执行副作用回调，不缓存副作用回调, 同步执行
+            同时改变多个依赖数据值，多次调用副作用函回调
+    */
     watch(
       title, 
       () => {
@@ -123,10 +123,7 @@ const app = createApp({
       { flush: 'post' }
     )
 
-    /**
-     * watch立即执行
-     * immediate
-     */
+    // immediate 立即执行
     watch(
       title, 
       (cur, prev) => {
@@ -135,10 +132,7 @@ const app = createApp({
       { immediate: true }
     )
 
-    /**
-     * watch侦听行为调试
-     * onTrack onTrigger
-     */
+    // onTrack onTrigger 侦听行为调试
     watch(
       title, 
       () => {}, 
@@ -154,32 +148,26 @@ const app = createApp({
       }
     )
 
-    /**
-     * watch侦听停止
-     * 函数执行后返回的stop函数
-     */
+    // 侦听停止
     const stop = watch(title, () => {
       // console.log('stop');
     })
     stop();
 
-    /**
-     * watchEffect用来观察副作用的函数
-     * 
-     * watch是属于惰性的，只有当数据变化时才去执行
-     * 并且需要有一个明确的侦听数据源，可以拿到新值与旧值
-     * 
-     * watchEffect侦听器被创建或者数据发生改变时都会执行回调函数
-     * 自动追踪依赖，默认第一次执行时会进行依赖收集，拿不到旧值
-     */
+    /*
+      watchEffect 用来观察副作用的函数
+
+      watch 是属于惰性的，只有当数据变化时才去执行
+      并且需要有一个明确的侦听数据源，可以拿到新值与旧值
+
+      watchEffect 侦听器被创建或者数据发生改变时都会执行回调函数
+      自动追踪依赖，默认第一次执行时会进行依赖收集，拿不到旧值
+    */
     watchEffect(() => {
       // console.log('watchEffect:', title.value); // get title.value -> 收集依赖
     })
 
-    /**
-     * watchEffect清理副作用
-     * onCleanup
-     */
+    // watchEffect 清理副作用 onCleanup
     let t = null;
     let count = 0;
     function getData (title) {
@@ -190,7 +178,7 @@ const app = createApp({
     watchEffect(onCleanup => {
       getData(title.value);
 
-      // 当title.value数据依赖发生变更时
+      // 当 title.value 数据依赖发生变更时
       // 清除上一次调用的副作用函数
       // 可以解决多次副作用函数的执行，类似于防抖
       onCleanup(() => {
@@ -200,12 +188,12 @@ const app = createApp({
       })
     })
 
-    /**
-     * React中useEffect是无法使用async和await的
-     * 因为它的参数回调函数内返回的函数不是一个Promise函数
-     * 所以它无法使用async和await，但是它解决的方案是
-     * 可以在参数函数内部去定义请求函数
-     */
+    /*
+      React 中 useEffect 是无法使用 async 和 await 的
+      因为它的参数回调函数内返回的函数不是一个 Promise 函数
+      所以它无法使用 async 和 await 但是它解决的方案是
+      可以在参数函数内部去定义请求函数
+    */
     // useEffect(() => {
     //   async function getData (){
     //     await console.log('...')

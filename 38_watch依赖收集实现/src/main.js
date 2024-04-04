@@ -47,18 +47,17 @@ oCBtn2.addEventListener('click', function () {
   console.log('computed:', res2.value);
 }, false);
 
-/**
- * 
- * 数据劫持
- * cb => watchEffectCB
- * 
- * Proxy -> get -> state.a -> getter函数 -> state.a被访问 -> 收集这个cb
- *          set -> state.a = xxx -> setter函数 -> state.a变化了 -> notify(target, key) -> [...cb] -> 全部执行
- * 
- * watchEffect -> 先执行一次回调，state.a变化的时候，还要执行一次回调
- * 
- * watch -> 将参数一添加dep，state.a变化的时候，执行参数二cb
- */
+/*
+  数据劫持
+  cb => watchEffectCB
+
+  Proxy -> get -> state.a -> getter函数 -> state.a被访问 -> 收集这个cb
+           set -> state.a = xxx -> setter函数 -> state.a变化了 -> notify(target, key) -> [...cb] -> 全部执行
+
+  watchEffect -> 先执行一次回调，state.a变化的时候，还要执行一次回调
+
+  watch -> 将参数一添加dep，state.a变化的时候，执行参数二cb
+*/
 
 watchEffect(() => {
   console.log('watchEffect -> state1.a', state1.a);

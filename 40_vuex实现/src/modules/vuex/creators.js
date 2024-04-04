@@ -9,7 +9,7 @@ export function createState (store, state) {
 
 export function createMutations (store, mutations) {
   forEachValueKey(mutations, (mutationFn, mutationKey) => {
-    // 创建mutation函数
+    // 创建 mutation 函数
     // commit(type, payload) -> this._mutations[type](payload);
     store._mutations[mutationKey] = (payload) => {
       // 包装函数的目的达成

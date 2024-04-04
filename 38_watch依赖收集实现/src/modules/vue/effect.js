@@ -18,8 +18,8 @@ export function computed (callback) {
   const value = callback();
   const computedRef = new ComputedRef(value);
 
-  // 当notify时，将dep中cb函数中记录对应的computed实例
-  // 数据发生变更时，更新对应的value
+  // 当 notify 时，将 dep 中 cb 函数中记录对应的 computed 实例
+  // 数据发生变更时，更新对应的 value
   callback.computedRef = computedRef;
   Dep.effectCB = null;
   return computedRef;

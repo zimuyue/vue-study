@@ -1,12 +1,12 @@
-/**
- * Vue在2版本基础上增加了CompositionAPI
- * 也可以称为函数API，原本的OptionsAPI还可以继续使用
- * 
- * 组合式API的好处可以进行抽离，对于封装集成是非常友好的
- * 更好的将业务功能进行细粒化拆分
- */
+/*
+  Vue 在 2 版本基础上增加了 CompositionAPI
+  也可以称为函数 API，原本的 OptionsAPI 还可以继续使用
 
-// Vue2响应式方式
+  组合式 API 的好处可以进行抽离，对于封装集成是非常友好的
+  更好的将业务功能进行细粒化拆分
+*/
+
+// Vue2 响应式方式
 const data = {
   a: 1,
   b: {
@@ -44,8 +44,8 @@ function defineReactive (data, key, value) {
   })
 }
 
-// Vue3响应式优点不用逐个属性定义get和set函数
-// Proxy是针对源对象的一个代理引用，属于引用容器
+// Vue3 响应式优点不用逐个属性定义 get 和 set 函数
+// Proxy 是针对源对象的一个代理引用，属于引用容器
 // 当源对象数据发生变更时，代理引用也会发生变化
 function _reactive (data) {
   return new Proxy(data, {

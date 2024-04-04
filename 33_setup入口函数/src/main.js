@@ -33,10 +33,10 @@ const app = createApp({
   /*
     props -> 选项API中 props 选项的引用
     ctx   -> 装的是一些
-           attrs -> this.$attrs
-           slots -> this.$slots
-           emit -> this.$emit
-           expose -> 暴露属性给父组件
+              attrs -> this.$attrs
+              slots -> this.$slots
+              emit -> this.$emit
+              expose -> 暴露属性给父组件
   */ 
   setup (props, ctx/* context */) {
     const [title, setTitle] = useTitle();

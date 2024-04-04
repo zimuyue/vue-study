@@ -1,6 +1,7 @@
 import reducer from '../reducers/counter.js';
 import { PLUS, MINUS } from '../actions/counter.js';
 
+// dispatcher 根据类型来管理具体分发哪个事件
 export default (ctx) => {
   const {
     plus,
