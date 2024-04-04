@@ -61,21 +61,18 @@ class Vue {
 
 export default Vue;
 
-/**
- * Vue
- * 
- * data -> data() -> vm.$data -> reactive -> vm.xxx
- *     get vm[key] -> vm.$data[key]
- *     set vm[key] -> vm.$data[key] = newValue
- *        ? -> updateComputedProp -> value
- *        ? -> updateWatchProp -> callback
- *     
- * computed -> props -> {
- *   value -> get -> value
- *   get -> method
- *   dep -> [ a, b ]
- * }
- * 
- * watch -> props -> fn -> data set -> call fn
- * 
- */
+/*
+  data -> data() -> vm.$data -> reactive -> vm.xxx
+      get vm[key] -> vm.$data[key]
+      set vm[key] -> vm.$data[key] = newValue
+         ? -> updateComputedProp -> value
+         ? -> updateWatchProp -> callback
+
+  computed -> props -> {
+    value -> get -> value
+    get -> method
+    dep -> [ a, b ]
+  }
+
+  watch -> props -> fn -> data set -> call fn
+*/

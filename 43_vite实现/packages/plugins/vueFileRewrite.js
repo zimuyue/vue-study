@@ -62,19 +62,3 @@ function templateCompile ({ content }, path, compileTemplate) {
 }
 
 module.exports = vueFileRewrite;
-
-// single file component    .vue   .js
-
-/**
- * import { render } from 'App.vue?type=template'
- * 
- * const $script = {
- *   name: 'App',
- *   components: {
- *     Counter
- *   },
- *   render: render
- * }
- * 
- * 
- */

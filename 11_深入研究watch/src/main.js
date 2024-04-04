@@ -1,14 +1,14 @@
-/**
- * watch 侦听器
- * 关注点在数据更新：给数据增加侦听器，当数据更新时，侦听器函数执行
- * 特点：数据更新时，需要完成什么样的逻辑
- * 
- * computed 计算属性
- * 关注点在模板：抽离复用模板中的复杂的逻辑运算
- * 特点：当函数内的依赖更新后，重新调用
- * 
- * https://cn.vuejs.org/guide/essentials/watchers.html
- */
+/*
+  watch 侦听器
+  关注点在数据更新：给数据增加侦听器，当数据更新时，侦听器函数执行
+  特点：数据更新时，需要完成什么样的逻辑
+
+  computed 计算属性
+  关注点在模板：抽离复用模板中的复杂的逻辑运算
+  特点：当函数内的依赖更新后，重新调用
+
+  https://cn.vuejs.org/guide/essentials/watchers.html
+*/
 
 import Vue from './modules/vue/index.js';
 

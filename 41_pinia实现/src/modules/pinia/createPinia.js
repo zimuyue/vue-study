@@ -3,11 +3,6 @@ import { piniaSymbol } from "./global.js";
 const { effectScope, ref } = Vue;
 
 export default function createPinia () {
-  /**
-   * {
-   *   state
-   * }
-   */
   const scope = effectScope(true);
   const state = scope.run(() => ref({}));
   const store = new Map();

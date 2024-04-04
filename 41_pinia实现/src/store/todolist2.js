@@ -2,15 +2,6 @@ import { defineStore } from '../modules/pinia/index.js';
 // const { createPinia } = Pinia;
 const { computed, ref } = Vue;
 
-/**
- * {
- *   store: {
- *     "todolist1" => store,
- *     "todolist2" => store
- *   }
- * }
- */
-
 export default defineStore('todolist2', () => {
   const todoList = ref([]);
   const count = ref(0);

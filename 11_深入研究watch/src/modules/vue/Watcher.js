@@ -1,14 +1,13 @@
 class Watcher {
-  /**
-   * addWatcher (vm, watcher, key)
-   * 
-   * this.watchers -> watch
-   *   {
-   *     key: ?
-   *     fn: key fn
-   *   }
-   * 
-   */
+  /*
+    addWatcher (vm, watcher, key)
+
+    this.watchers -> watch
+      {
+        key: ?
+        fn: key fn
+      }
+  */
   constructor () {
     this.watchers = [];
   }

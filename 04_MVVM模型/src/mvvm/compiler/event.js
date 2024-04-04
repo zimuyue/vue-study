@@ -4,15 +4,14 @@ const reg_onClick = /onClick\=\"(.+?)\"/g;
 const reg_fnName = /^(.+?)\(/;
 const reg_arg = /\((.*?)\)/;
 
-/**
- * eventPool = []
- * 
- * {
- *   mark: random
- *   handler: 事件处理函数的字符串
- *   type: 'click'
- * }
- */
+/*
+  eventPool = []
+  {
+    mark: random
+    handler: 事件处理函数的字符串
+    type: 'click'
+  }
+*/
 
 const eventPool = [];
 

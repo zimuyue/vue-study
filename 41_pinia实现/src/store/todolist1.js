@@ -15,15 +15,15 @@ export default defineStore('todolist1', { // function useStore() {}
     }
   },
   actions: {
-    /**
-     * {
-     *   id: Timestamp
-     *   content: string
-     *   completed: boolean
-     * }
-     * 
-     * this => this -> store
-     */
+    /*
+      {
+        id: Timestamp
+        content: string
+        completed: boolean
+      }
+      
+      this => this -> store
+    */
     addTodo (todo) {
       this.todoList.unshift(todo);
     },

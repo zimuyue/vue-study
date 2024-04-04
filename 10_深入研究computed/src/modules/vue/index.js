@@ -104,13 +104,13 @@ var Vue = (function () {
       var descriptor = Object.getOwnPropertyDescriptor(computed, key),
           descriptorFn = descriptor.value.get ? descriptor.value.get : descriptor.value;
 
-      /**
-       * total: {
-       *   value: 函数执行返回的结果
-       *   get: get
-       *   dep: ['a', 'b']
-       * }
-       */
+      /*
+        total: {
+          value: 函数执行返回的结果
+          get: get
+          dep: ['a', 'b']
+        }
+      */
       
       computedData[key] = {};
       computedData[key].value = descriptorFn.call(vm);

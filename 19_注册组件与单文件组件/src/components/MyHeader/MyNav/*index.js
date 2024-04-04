@@ -19,14 +19,3 @@ const MyNav = {
 }
 
 export default MyNav;
-
-/**
- * 在一个文件内
- * template
- * script
- * style
- * 
- * 
- * .vue -> 打包成.js
- * 
- */

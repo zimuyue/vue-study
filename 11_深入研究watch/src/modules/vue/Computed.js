@@ -1,18 +1,18 @@
 class Computed {
   constructor () {
-    /**
-     *  total () {
-          console.log('Computed');
-          return this.a + this.b;
-        }
-     *  
-        {
-          key: total,
-          value: 3,
-          get: total fn,
-          dep: [a, b]
-        }
-     */
+    /*
+      total () {
+        console.log('Computed');
+        return this.a + this.b;
+      }
+    
+      {
+        key: total,
+        value: 3,
+        get: total fn,
+        dep: [a, b]
+      }
+    */
     this.computedData = [];
   }
 

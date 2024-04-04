@@ -1,15 +1,14 @@
 import { REG_ARR, REG_OBJ, REG_SPACE } from "./regular.js";
 import { transformToKebab } from "./utils.js";
 
-/**
- * 
- * Map {
- *   el: {
- *     type: class/style,
- *     expression: value
- *   }
- * }
- */
+/*
+  Map {
+    el: {
+      type: class/style,
+      expression: value
+    }
+  }
+*/
 
 export function compileAttr (vm, el, name, value) {
   value = value.replace(REG_SPACE, '');

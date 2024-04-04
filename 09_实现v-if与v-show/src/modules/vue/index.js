@@ -1,25 +1,23 @@
-/**
- * showPool   Map { dom: {} }
- * 
- * [
- *   [
- *     dom,
- *     {
- *       type: if/show
- *       prop: data
- *     }
- *   ]
- * ]
- * 
- * eventPool   Map { dom: {} }
- * 
- * [
- *   [
- *     dom,
- *     handler
- *   ]
- * ]
- */
+/*
+  showPool   Map { dom: {} }
+  [
+    [
+      dom,
+      {
+        type: if/show
+        prop: data
+      }
+    ]
+  ]
+
+  eventPool   Map { dom: {} }
+  [
+    [
+      dom,
+      handler
+    ]
+  ]
+*/
 
 var Vue = (function () {
   function Vue (options) {

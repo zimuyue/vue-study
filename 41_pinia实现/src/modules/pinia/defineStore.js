@@ -1,10 +1,3 @@
-
-/**
- * options
- * id, options,
- * id, setup
- */
-
 import { piniaSymbol } from "./global.js";
 
 import {
@@ -52,20 +45,18 @@ export default function defineStore (...args) {
 
   const isSetup = isFunction(setup);
   
-  /**
-   * 1. pinia导入
-   * 2. 判断pinia.store => id
-   *    没有 => 创建store
-   *    有 => 返回
-   */
-  function useStore () { // 创建store
+  /*
+    1. pinia 导入
+    2. 判断 pinia.store => id
+       没有 => 创建 store
+       有 => 返回
+  */
+  function useStore () { // 创建 store
     const pinia = inject(piniaSymbol);
 
     if (!pinia.store.has(id)) {
       if (isSetup) {
-        /**
-         * pinia.store => id => store(setup)
-         */
+        // pinia.store => id => store(setup)
         createSetupStore(pinia, id, setup);
       } else {
         createOptionStore(pinia, id, options);
@@ -79,34 +70,8 @@ export default function defineStore (...args) {
   return useStore;
 }
 
-/**{
- *   state,
- *   store,
- *   scope,
- *   install
- * } */
 function createSetupStore (pinia, id, setup) {
   const setupStore = setup();
-  /**
-   * pinia APIs
-   * count
-   * todoList
-   * addTodo
-   * removeTodo,
-   * toggleTodo
-   */
-
-  /**
-   * $patch,
-   * $reset,
-   * $dispose
-   * 
-   * {
-   *   $patch,
-   *   $reset,
-   *   $dispose
-   * }
-   */
   let store;
   let storeScope;
 
@@ -128,27 +93,20 @@ function compileSetup (pinia, id, setupStore) {
     const el = setupStore[key];
 
     if ((isRef(el) && !isComputed(el)) || isReactive(el)) {
-      /**
-       * pinia {
-       *   state: {
-       *     "todolist1": {
-       *       todoList: []
-       *     }
-       *   }
-       * }
-       */
+      /*
+        pinia {
+          state: {
+            "todolist1": {
+              todoList: []
+            }
+          }
+        }
+      */
       pinia.state.value[id][key] = el;
     }
   }
 
   return {
-    /**
-     * count,
-     * todoList
-     * addTodo,
-     * removeTodo,
-     * toggleTodo
-     */
     ...setupStore
   }
 }
@@ -196,31 +154,32 @@ function compileOptions(pinia, id, store, {
 
 function createStoreState (pinia, id, state) {
   pinia.state.value[id] = state ? state() : {};
-  /**
-   * {
-   *    todolist1: ref(pinia.state.value['todolist1'])
-   *    todolist2: ref(pinia.state.value['todolist2'])
-   * }
-   */
+  /*
+    {
+       todolist1: ref(pinia.state.value['todolist1'])
+       todolist2: ref(pinia.state.value['todolist2'])
+    }
+  */
   return toRefs(pinia.state.value[id]);
 }
 
 function createStoreGetters (store, getters) {
-  /**
-   * getters: {
-   *   count () {
-   *    // this => store
-   *     return this.todoList.length
-   *   }
-   * }
-   */
+  /*
+    getters: {
+      count () {
+       // this => store
+        return this.todoList.length
+      }
+    }
+  */
+
   // [ count, count1, ]
 
-  /**
-   * {
-   *   count: computed(() => getters.count.call(store))
-   * }
-   */
+  /*
+    {
+      count: computed(() => getters.count.call(store))
+    }
+  */
   return Object.keys(getters || {}).reduce((wrapper, getterName) => {
     wrapper[getterName] = computed(() => getters[getterName].call(store));
     return wrapper;
@@ -291,20 +250,3 @@ function runPlugins (pinia, store) {
     }
   })
 }
-
-/**
- * test(() => {})
- * test(() => {})
- * test(() => {})
- * test(() => {})
- * 
- * const list = [];
- * 
- * function test (cb) {
- *   list.push(cb);
- * }
- * 
- * function onMounted() {
- *   list.forEach(cb => cb());
- * }
- */

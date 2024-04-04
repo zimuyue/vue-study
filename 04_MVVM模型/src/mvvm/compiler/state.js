@@ -6,12 +6,12 @@ const reg_var = /\{\{(.+?)\}\}/g;
 
 export const statePool = [];
 
-/**
- * {
- *   mark: _mark,
- *   state: value
- * }
- */
+/*
+  {
+    mark: _mark,
+    state: value
+  }
+*/
 
 let o = 0;
 

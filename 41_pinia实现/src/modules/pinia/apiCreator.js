@@ -7,12 +7,12 @@ export let actionList = [];
 export function createPatch (pinia, id) {
   return function $patch (stateOrFn) {
     if (typeof stateOrFn === 'function') {
-      /**
-       * {
-       *   todolist1: {}
-       *   todolist2: {}
-       * }
-       */
+      /*
+        {
+          todolist1: {}
+          todolist2: {}
+        }
+      */
       stateOrFn(pinia.state.value[id]);
     } else {
       mergeObject(pinia.state.value[id], stateOrFn);
@@ -47,12 +47,12 @@ export function createOnAction () {
 export function createDispose(pinia, id, scope) {
   return function $dispose () {
     actionList = [];
-    /**
-     * Map {   delete(key)
-     *   todolist1 => { .... },
-     *   todolist2 => { .... }
-     * }
-     */
+    /*
+      Map {   delete(key)
+        todolist1 => { .... },
+        todolist2 => { .... }
+      }
+    */
     pinia.store.delete(id);
     scope.stop();
   }

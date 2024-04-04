@@ -9,20 +9,15 @@ const autoprefixer = require('autoprefixer');
   vue3 -> npm i vue-loader@next @vue/compiler-sfc -D
 */
 
-/**
- * 1、webpack各种依赖之间的版本兼容问题非常大
- * 2、webpack性能优化是很困难
- * 3、复杂配置的上手很困难
- */
 
-/**
- * sass less -> sass sass-loader
- * postcss postcss-loader -> 浏览器样式兼容autoprefixer
- * css-loader: css模块化解析
- * vue-style-loader
- */
+/*
+  sass less -> sass sass-loader
+  postcss postcss-loader -> 浏览器样式兼容autoprefixer
+  css-loader: css模块化解析
+  vue-style-loader
+*/
 
-const _ = './44_Pinia使用与实现/';
+const _ = './41_pinia实现/';
 
 module.exports = {
   mode: 'development',
@@ -43,7 +38,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.vue']
   },
   devtool: 'source-map',
-  // 将自定义loader与node_modules合并
+  // 将自定义 loader 与 node_modules 合并
   // resolveLoader: {
   //   modules: [
   //     'node_modules',

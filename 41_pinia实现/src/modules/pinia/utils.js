@@ -1,11 +1,6 @@
 const { isRef } = Vue;
 
 export function getArgs (args) {
-  /**
-   * id,
-   * options,  { id: xxx }
-   * setup
-   */
   let id;
   let options;
   let setup;
