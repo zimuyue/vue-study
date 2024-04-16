@@ -1,3 +1,3 @@
 # Vue
 
-JSplusplus Vue 生态学习
+jsplusplus vue in depth study

@@ -3,12 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const { VueLoaderPlugin } = require('vue-loader');
 const autoprefixer = require('autoprefixer');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 /*
   vue2 -> npm i vue-loader@15.4.1 vue-template-compiler@2.6.14 -D
   vue3 -> npm i vue-loader@next @vue/compiler-sfc -D
 */
-
 
 /*
   sass less -> sass sass-loader
@@ -17,11 +17,11 @@ const autoprefixer = require('autoprefixer');
   vue-style-loader
 */
 
-const _ = './41_pinia实现/';
+const _ = './33_setup/';
 
 module.exports = {
   mode: 'development',
-  entry: _ + 'src/main.js',
+  entry: _ + 'main.js',
   output: {
     path: resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -37,6 +37,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.vue']
   },
+  stats: 'errors-only',
   devtool: 'source-map',
   // 将自定义 loader 与 node_modules 合并
   // resolveLoader: {
@@ -119,8 +120,8 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      // template: resolve(__dirname, 'public/index.html')
-      template: resolve(__dirname, _ + 'public/index.html')
-    })
+      template: resolve(__dirname, './index.html')
+    }),
+    new FriendlyErrorsWebpackPlugin()
   ]
 }
