@@ -2,7 +2,7 @@ import {
   useState,
   useReducer,
   useReactive
-} from './hooks/index.js';
+} from './index.js';
 
 const { createApp } = Vue;
 
@@ -15,16 +15,19 @@ const app = createApp({
         <button @click="setCount1(count => count.value + 2)">+</button>
         <button @click="setCount1(count1 - 1)">-</button>
       </div>
+
       <div>
         <h1>{{ count2 }}</h1>
         <button @click="setCount2(count => count.value + 2)">+</button>
         <button @click="setCount2(count2 - 1)">-</button>
       </div>
+
       <div>
         <h1>{{ count3 }}</h1>
         <button @click="count3Dispatch({ type: 'PLUS', payload: 2 })">+</button>
         <button @click="count3Dispatch({ type: 'MINUS', payload: 1 })">-</button>
       </div>
+      
       <div>
         <h1>{{ name }}</h1>
         <h2>{{ age }}</h2>

@@ -1,4 +1,4 @@
-import { ref, createApp } from './modules/vue/index.js';
+import { ref, createApp } from './vue/index.js';
 
 createApp('#app', {
   // 响应式集合

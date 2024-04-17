@@ -63,6 +63,6 @@ export default class Dep {
       if (dep.computedRef) {
         dep.computedRef.value = newValue; 
       }
-    });
+    })
   }
 }

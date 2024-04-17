@@ -3,12 +3,7 @@ import {
   watchEffect,
   reactive,
   computed
-} from './modules/vue/index.js';
-
-const oABtn1 = document.querySelector('#aBtn1');
-const oCBtn1 = document.querySelector('#cBtn1');
-const oABtn2 = document.querySelector('#aBtn2');
-const oCBtn2 = document.querySelector('#cBtn2');
+} from './vue/index.js';
 
 const state1 = reactive({
   a: 1,
@@ -27,25 +22,25 @@ const state2 = reactive({
 const res1 = computed(() => state1.a + state1.b.c);
 const res2 = computed(() => state2.a + state2.b.c);
 
-oABtn1.addEventListener('click', function () {
+setTimeout(() => {
   state1.a = 100;
-  console.log('computed:', res1.value);
-}, false);
+  console.log('setTimeout1:', res1.value);
+}, 3000)
 
-oCBtn1.addEventListener('click', function () {
+setTimeout(() => {
   state1.b.c = 200;
-  console.log('computed:', res1.value);
-}, false);
+  console.log('setTimeout2:', res1.value);
+}, 5000)
 
-oABtn2.addEventListener('click', function () {
+setTimeout(() => {
   state2.a = 10000;
-  console.log('computed:', res2.value);
-}, false);
+  console.log('setTimeout3:', res2.value);
+}, 8000)
 
-oCBtn2.addEventListener('click', function () {
+setTimeout(() => {
   state2.b.c = 20000;
-  console.log('computed:', res2.value);
-}, false);
+  console.log('setTimeout4:', res2.value);
+}, 10000)
 
 /*
   数据劫持

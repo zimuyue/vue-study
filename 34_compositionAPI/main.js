@@ -38,9 +38,8 @@ const app = createApp({
 
     /*
       reactive 深层响应式 -> JX Proxy API
-      reactive 代理对象与源对象不是同一个引用
-
-      reactive 只针对 Array Object Map Set 类型
+      代理对象与源对象不是同一个引用
+      只针对 Array Object Map Set 类型
       因为在 JS 中没有办法能够让原始类型具备引用的属性
     */
     const status = reactive({

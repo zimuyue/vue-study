@@ -17,7 +17,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
   vue-style-loader
 */
 
-const _ = './33_setup/';
+const _ = './39_transition/';
 
 module.exports = {
   mode: 'development',
@@ -114,6 +114,16 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          }
+        }
       }
     ]
   },

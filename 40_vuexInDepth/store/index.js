@@ -1,5 +1,5 @@
 // const { createStore } = Vuex;
-import { createStore } from '../modules/vuex/index.js';
+import { createStore } from '../modules/index.js';
 
 import actions from './actions.js';
 import mutations from './mutations.js';
