@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'CounterResult',
+  name: 'CalResult',
   props: ['result']
 }
 </script>

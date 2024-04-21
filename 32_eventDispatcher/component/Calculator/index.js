@@ -1,11 +1,11 @@
 // 块组件 index 组件出口
-import Counter from './Counter.vue';
+import Calculator from './Calculator.vue';
 
 const IndexPage = {
   name: 'IndexPage',
-  components: { Counter },
+  components: { Calculator },
   template: `
-    <Counter />
+    <Calculator />
   `
 }
 

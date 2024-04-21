@@ -1,8 +1,8 @@
 <template>
-  <counter-result :result="result" />
+  <CounterResult :result="result" />
   <div>
-    <counter-button innerText="+" action="PLUS" @dispatch="dispatch" />
-    <counter-button innerText="-" action="MINUS" @dispatch="dispatch" />
+    <CounterButton innerText="+" action="PLUS" @dispatch="dispatch" />
+    <CounterButton innerText="-" action="MINUS" @dispatch="dispatch" />
   </div>
 </template>
 
@@ -46,5 +46,3 @@ export default {
   }
 }
 </script>
-
-<style></style>

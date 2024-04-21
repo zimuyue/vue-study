@@ -17,7 +17,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
   vue-style-loader
 */
 
-const _ = './39_transition/';
+const _ = './32_eventDispatcher/';
 
 module.exports = {
   mode: 'development',
