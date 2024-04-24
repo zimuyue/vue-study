@@ -1,3 +1,3 @@
 # Vue
 
-jsplusplus vue in depth study
+Vue in depth study

@@ -1,57 +1,46 @@
 /*
-  Vue 是一个渐进式框架，只关心用户界面 view 层的视图渲染
-  提供自下而上的开发流程，官方提供了很多的社区生态如 Vuex、vue-router 等等
-  这些库你可以选择集成到项目中去，与 Angular 相比 Angular 更像是一个综合性大型框架
-  提供自上而下的开发流程，提供项目应用、状态管理，通常用来开发大型项目
+  Vue 是一个渐进式框架提供自下而上的开发流程
+  官方提供了很多社区生态库例如 Vuex/vue-router 等
+  这些第三方库你可以根据需求选择集成到项目中去
 
-  Vue 的核心（系统）模板语法 -> 核心库 -> 编译模板 -> 渲染DOM
+  Vue 框架的核心是它强大的模板编译系统
+  通过内部核心库去编译模板生成 DOM 树渲染页面
 
-  Vue 框架设计采用了 MVVM 模型的策略，完成了数据双向绑定的机制
-  我们的业务关注点全部可以放到业务逻辑层
-  视图层交给了 ViewModel 帮我们完成数据绑定、渲染和更新
+  Vue 框架借鉴了 MVVM 模型的策略
+  完成了数据双向绑定的机制，帮助开发人员只关注于数据逻辑层面的开发
+  对于如何渲染视图、DOM 如何与数据做关联、绑定事件处理函数都是由 vm 帮我们来做
+  大大减小了开发人员的心智分担，便于上手开发，玩具
 
-  Vue 将数据与 DOM 进行关联，并建立响应式关联，数据改变，视图更新
+  Vue 数据绑定是双向的
+  通过给 DOM 元素绑定事件处理函数，行为的触发更改 data 数据导致视图的更新
+  通过 v-model 绑定 input 事件，视图的变更触发 data 数据的变更
+
+  Vue 数据流动
+  Vue 与 React 一样都是遵循单向数据流
+  即通过父组件管理 state 状态，向子组件传递 props 数据
+  而子组件是不可以通过更改 props 影响父组件 state 状态
+  这样是不被允许的，如果是兄弟组件使用相同的 props 数据会导致数据流混乱
+
+  Vue 组件化系统
+  通过多个组件实例来构建组件树，使用 ES 模块化来创建管理
+  组件是抽象、小型、独立、可预先定义配置的可复用组件
+  组件化最大的作用是独立开发、预先配置，为了更好的扩展与维护
+
+  Vue 指令语法
+  所有在 Vue 中模版上中 v-* 属性都是指令
+  通过指令指示模板应该按照怎样的逻辑进行渲染和绑定行为
+  v-if/for/show/model/on/bind/html/once/slot
+
+  Vue 事件修饰符
+  目的在与把事件处理函数中非纯逻辑的程序分离出去
+  prevent/stop/capture/self/once/passive
 */
 
 /*
-  数据绑定 & 数据流
-  数据绑定是指数据与视图渲染的直接关系
-  1. Reacts 是单向数据绑定，通过绑定 event 事件来更改 state 状态，导致视图更新
-  2. Vue 是双向数据绑定，通过绑定 event 事件来更改 data 状态导致视图更新
-     另一方面通过 v-model 绑定 input 事件，视图更新导致 data 状态变更
-
-  数据流是指父子组件中数据按照什么方向流动
-  Vue/React 都是单向数据流，通过父组件 state 向子组件传递 props 数据
-  子组件是无法通过更改 props 导致父组件 state 状态变更，这样是不被允许的
-  props: immutable value
-  state/data: mutable value
-*/
-
-/*
-  Vue 组件化系统是 Vue 的核心，通过多个组件实例构建组件树
-  Vue 组件系统的构建利用 ES 模块化来创建
-
-  组件化 -> 抽象小型、独立、可预先定义配置的、可复用的组件
-  小型 -> 页面的构成拆分成一个一个的小单元
-  独立 -> 每一个小单元尽可能都独立开发
-  预先定义 -> 小单元都可以先定义好，在需要的时候导入使用
-  预先配置 -> 小单元可以接收一些在使用的时候需要的一些配置
-  可复用 -> 小单元可以在多个地方使用
-
-  可复用性要适当的考量，有些组件确实是不需要复用，可配置性越高，功能性就越强
-  组件最大的作用是独立开发、预先配置，为了更好的维护和扩展
-*/
-
-/*
-  根组件实例
-  本质上就是一个对象 {}
-  createApp 执行的时候需要一个根组件 createApp({})
-  根组件是 Vue 渲染的起点
-
-  根元素是一个 HTML 元素
-  createApp 执行创建 Vue 应用实例时，需要一个 HTML 根元素
+  Vue 根组件实例
+  本质上就是一个对象 App createApp(App)
+  将创建好的根组件实例挂载到对应的 HTML 元素上
   <div id="app"></div>
-  将创建好的根组件实例，挂载到对应的 HTML 元素上
 */
 const App = {
   data () {
@@ -69,23 +58,15 @@ const App = {
     toLowerCase () {
       this.content = this.content.toLowerCase();
     }
-  },
-  mounted () {
-    console.log('根组件实例', this);
   }
 }
 
 /*
-  应用实例
-  通过 createApp 创建 App 返回一个应用实例
-  应用实例主要是用来注册全局组件
-
-  实例上暴露了很多方法
-  component 注册组件
-  directive 注册指令
-  filter    注册过滤器
-  use       使用插件
-  大多数这样的方法都会返回 createApp 创建出来的应用实例，允许链式操作
+  Vue 应用实例
+  通过 createApp(App) 执行返回一个应用实例
+  应用实例主要是用来注册全局组件，同时对外暴漏了很多方法
+  component/directive/filter/use
+  这些方法都会返回应用实例允许链式操作
 */
 const app = Vue.createApp(App);
 
@@ -98,41 +79,83 @@ const app2 = app.component('MyTitle', {
   `
 })
 
-console.log(app2 === app); // true
-
-console.log('应用实例', app2);
+console.log('应用实例', app2 === app); // true
 
 /*
-  组件实例
-  每创建一个组件都会有自己的组件实例
+  Vue 组件实例
   一个应用中所有的组件都共享一个应用实例
-  无论是根组件还是应用内其他的组件，配置选项、组件行为都是一样的
-
-  组件实例可以添加一些属性 property
-
-  data/props/components/methods .......
-  this -> $attrs/$emit Vue组件实例内置方法 $
+  组件内可配置项 data/props/components/methods
+  this -> $attrs/$emit 组件实例内置方法 $
 */
 const vm = app.mount('#app');
 
 console.log('组件实例', vm);
 
 /*
-  Vue 生命周期函数
-  组件实例在创建时经历的过程，对应每个阶段的钩子函数
-  首先 Vue 会进行初始化事件和生命周期函数
-  调用 beforeCreate 方法，开始进行创建前工作
-  初始化注入项以及绑定组件实例的响应式对象
-  调用 created 方法，然后去挂载节点
-  根据 el 与 template 选项传递，如果有 template 则去编译生成渲染函数
-  如果没有 template 则取 el 的 outerHTML 作为模板
-  调用 beforeMount 方法，创建 vm.$el 去替换 el，就是整个模板编译的过程
-  调用 mounted 方法，挂载完毕
+  在创建 Vue 应用时都做了哪些事
+  在 new Vue(options) 创建应用实例前做一些初始化工作
 
-  当组件实例内数据触发更新时，调用 beforeUpdate 方法
-  生成虚拟 DOM 树与真实 DOM 进行对比，找出差异化节点，采取就地更新原则
-  进行打补丁，最终将真实 DOM 渲染到视图上面，调用 updated 方法
-  当组件调用 vm.$destroy 时，调用 beforeDestory 方法
-  解除组件绑定的监听器、子组件、事件处理函数，调用 destroyed 方法
-  https://cn.vuejs.org/guide/essentials/lifecycle.html#lifecycle-diagram
+  beforeCreate()
+
+  初始化事件函数以及向自身原型上挂载一些方法
+  通过传递的 options 配置对象中的 data 数据进行代理
+  向 vm 身上挂载 $data 好处就是为了避免用户直接操作数据源，防止数据污染
+
+  形成代理对象后，开始对 data 数据绑定响应式
+  通过 Object.defineProperty 绑定 getter 与 setter 函数
+  getter 函数的触发返回当前的属性值，同时触发依赖收集
+  setter 函数的触发更新当前的属性值，通知依赖视图更新
+  这里 Vue 使用了消息订阅与发布模式通过 Dep 类对模板中插值语法引用的属性
+  进行依赖收集，当数据发生变更时通知对应的回调函数去更新视图
+
+  然后开始初始化 options 中其它的配置，例如 computed/methods/watch
+
+  对 computed 对象中数据绑定响应式，同时解析 computed getter 函数中的依赖项
+  对这些依赖项也就是 data 里面的数据进行依赖收集，data 数据的更新调用计算属性的更新
+  同时缓存当前的计算结果，下次更新前对比新旧值
+
+  对 methods 对象中的方法进行绑定，将 methods 中方法绑定到 vm 对象身上
+  使用户可以直接使用 this.xxx() 来调用方法
+
+  对 watch 对象中的观察数据进行收集，创建一个观察池
+  将观察的对应 vm data 属性值添加至池子中，同时记录回调函数
+  当观察的 data 数据更新时也就是 setter 函数触发时
+  调用用户传递的回调函数传递新旧值，供用户使用
+
+  options 中配置项全部初始化完毕后
+  created()
+  此时可以在组件中通过 this.xxx 访问 data 中的数据，进行一些副作用操作
+
+  beforeMount()
+  准备开始进行模板编译
+
+  将组件中 template 模板解析为 AST 树
+  解析 AST 树的目的是 Vue 自身提供了大量的指令语法、自定义指令等
+  解析过程通俗点来讲其实就是模板字符串替换，通过内部的一套流程规则进行匹配替换
+  例如从起始标签开始匹配，记录当前元素的节点类型、属性、样式等等，最终生成 AST 树
+
+  将 AST 树转为虚拟 DOM 树
+  对树中的节点递归拼接 _c _v _s 方法，生成渲染函数
+  调用 $mount 方法触发 render
+
+  mounted()
+  此时可以通过 this.$refs 访问页面中的真实节点，初识化渲染完成
+
+  数据更新
+  beforeUpdate()
+  此时访问 data 中的数据还是旧数据
+
+  Vue 会根据 diff 算法进行虚拟 DOM 与真实 DOM 对比，找出差异化的节点
+  采取就地更新策略，开始打补丁，最终将真实 DOM 渲染到视图中
+
+  updated()
+  此时访问 data 中的数据是更新后的值
+
+  当触发 vm.$destroy()
+  beforeDestory()
+  这里可以做一些收尾工作，例如解除组件的事件监听器、定时器等一些副作用操作
+  此时还可以通过 this.$refs 访问页面中的真实节点
+
+  destroyed()
+  实例销毁，生命周期结束
 */

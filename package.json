@@ -1,32 +1,15 @@
 {
-  "name": "vue-webpack",
+  "name": "vue-study",
   "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "description": "Vue in depth study",
+  "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server"
+    "dev": "vite"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@vue/compiler-sfc": "^3.4.21",
-    "autoprefixer": "^10.4.18",
-    "css-loader": "4",
-    "file-loader": "^6.2.0",
-    "friendly-errors-webpack-plugin": "^1.7.0",
-    "html-webpack-plugin": "^4.5.0",
-    "postcss": "^8.4.35",
-    "postcss-loader": "4",
-    "sass": "^1.45.2",
-    "sass-loader": "10.1.1",
-    "vue-loader": "^17.3.1",
-    "vue-style-loader": "^4.1.3",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.2",
-    "@babel/core": "^7.24.4",
-    "@babel/preset-env": "^7.24.4",
-    "babel-loader": "8"
+  "dependencies": {
+    "vite": "^5.2.10"
   }
 }
