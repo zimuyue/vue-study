@@ -21,6 +21,15 @@ export default class VueRouter {
   }
 
   bindEvent () {
+    /*
+      DOMContentLoaded 事件
+      在浏览器解析完页面的 HTML 文档，并且构建了 DOM 树后触发
+      此时外部资源（如样式表、图片、脚本等）可能还未完全加载完成
+
+      loaded 事件
+      在页面的整个文档以及关联资源（如样式表、图片、脚本等）都已加载完成后触发
+      包含了 DOMContentLoaded 事件
+    */
     window.addEventListener('DOMContentLoaded', this.handleHashchange.bind(this));
     window.addEventListener('hashchange', this.handleHashchange.bind(this));
   }
